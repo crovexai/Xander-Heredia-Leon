@@ -44,6 +44,33 @@ body::before {
   background-size: 60px 60px;
 }
 
+.render-status {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 3;
+  padding: 0.55rem 0.85rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #0d2e1f;
+  background: rgba(216, 245, 229, 0.9);
+  border: 1px solid rgba(13, 46, 31, 0.28);
+  box-shadow: 0 8px 24px rgba(13, 46, 31, 0.18);
+  backdrop-filter: blur(4px);
+}
+
+@media (max-width: 640px) {
+  .render-status {
+    top: 0.75rem;
+    right: 0.75rem;
+    font-size: 0.72rem;
+    padding: 0.5rem 0.75rem;
+  }
+}
+
 .hero {
   min-height: 100vh;
   display: grid;
