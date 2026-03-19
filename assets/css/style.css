@@ -139,11 +139,11 @@ header {
 
 body.home-page .site-logo {
     width: auto;
-    height: 1040px;
+    height: 780px;
     max-width: 95vw;
     position: relative;
     top: 0;
-    transform: translateY(-100px);
+    transform: translateY(-200px);
     z-index: 150;
 }
 
