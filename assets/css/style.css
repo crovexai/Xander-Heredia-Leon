@@ -383,7 +383,7 @@ body.auth-page #loginMessage {
     width: 100%;
     height: 260px;
     object-fit: cover;
-    object-position: center center;
+    object-position: bottom center;
     opacity: 0;
     transition: opacity 0.35s ease-in-out;
 }
@@ -401,10 +401,10 @@ body.auth-page #loginMessage {
     opacity: 0;
     transition: opacity 0.35s ease-in-out;
     -webkit-mask-repeat: no-repeat;
-    -webkit-mask-position: center center;
+    -webkit-mask-position: bottom center;
     -webkit-mask-size: cover;
     mask-repeat: no-repeat;
-    mask-position: center center;
+    mask-position: bottom center;
     mask-size: cover;
 }
 
