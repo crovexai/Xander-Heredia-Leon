@@ -1,14 +1,41 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Xander Heredia Leon</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <aside class="render-status" aria-label="Render status">
-      Render #3 Live
-    </aside>
-  </body>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Generate Xander Photoshoot</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script src="assets/js/main.js" defer></script>
+</head>
+<body style="background-image: url('assets/backgrounds/grass-wall.PNG'); background-attachment: fixed; background-size: cover; background-repeat: no-repeat; background-position: center;">
+
+  <header align="center">
+    <img src="assets/images/background/Xander-name.png" class="site-logo" alt="Xander name" vspace="16">
+  </header>
+
+  <aside class="render-status" aria-label="Render status">
+    Render #5 Live
+  </aside>
+
+  <section class="page-spacer">
+    <!-- future content goes here -->
+  </section>
+
+  <section id="xander-generator">
+    <div class="container">
+      <h1>Generate a Xander Photoshoot</h1>
+
+      <input id="prompt" placeholder="Describe your photoshoot idea">
+
+      <select id="preset">
+        <option value="">Choose a preset</option>
+        <option value="studio">Studio Photoshoot</option>
+        <option value="beach">Beach Photoshoot</option>
+        <option value="gym">Gym Fitness Shoot</option>
+      </select>
+
+      <button onclick="generateXander()">Generate</button>
+
+      <div id="result"></div>
+    </div>
+  </section>
+</body>
 </html>
