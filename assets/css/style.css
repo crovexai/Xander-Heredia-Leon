@@ -138,7 +138,7 @@ header {
 }
 
 body.home-page .site-logo {
-    --home-name-height: clamp(120px, 18vw, 260px);
+    --home-name-height: clamp(480px, 72vw, 1040px);
     height: var(--home-name-height);
     width: auto;
     max-width: min(95vw, 1200px);
@@ -170,7 +170,7 @@ body.home-page header {
     }
 
     body.home-page .site-logo {
-        --home-name-height: clamp(110px, 20vw, 210px);
+        --home-name-height: clamp(440px, 80vw, 840px);
         max-width: 94vw;
     }
 }
