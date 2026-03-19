@@ -144,19 +144,20 @@ body.home-page .site-logo {
     max-width: 95vw;
     position: relative;
     top: 0;
-    transform: translate(25px, -300px);
+    transform: translateY(-300px);
     z-index: 150;
 }
 
 body.home-page header {
     overflow: visible;
     position: relative;
+    justify-content: center;
     z-index: 150;
 }
 
 @media (max-width: 900px) {
     body.home-page .site-logo {
-        transform: translate(20px, -210px);
+        transform: translateY(-210px);
     }
 }
 
@@ -168,7 +169,7 @@ body.home-page header {
     body.home-page .site-logo {
         width: min(94vw, var(--home-name-width));
         max-width: 94vw;
-        transform: translate(12px, -120px);
+        transform: translateY(-120px);
     }
 }
 
