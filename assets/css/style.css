@@ -150,6 +150,9 @@ body.home-page .site-logo {
 .title-area {
     display: flex;
     justify-content: center;
+    position: relative;
+    z-index: 160;
+    margin-top: 14px;
     margin-bottom: 10px;
 }
 
@@ -390,7 +393,7 @@ body.auth-page #loginMessage {
 /* STRING LIGHTS */
 #stringLights {
     position: absolute;
-    top: var(--lights-top);
+    top: 75px;
     left: 0;
     width: 100vw;
     aspect-ratio: 1536 / 580;
