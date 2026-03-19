@@ -138,9 +138,9 @@ header {
 }
 
 body.home-page .site-logo {
-    width: 1536px;
+    width: min(95vw, 1536px);
     height: auto;
-    max-width: none;
+    max-width: 95vw;
     position: relative;
     top: 0;
     transform: translate(25px, -300px);
