@@ -180,6 +180,18 @@ body.home-page header::before {
     z-index: 210;
 }
 
+body.home-page header::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    width: 100vw;
+    border-top: 2px solid rgba(255, 255, 255, 0.9);
+    transform: translateX(-50%);
+    pointer-events: none;
+    z-index: 210;
+}
+
 @media (max-width: 600px) {
     .site-logo {
         width: 96vw;
