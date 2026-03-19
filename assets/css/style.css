@@ -138,27 +138,30 @@ header {
 }
 
 body.home-page .site-logo {
-    --home-name-width: 1200px;
-    width: min(95vw, var(--home-name-width));
-    height: auto;
-    max-width: 95vw;
+    --home-name-height: clamp(120px, 18vw, 260px);
+    height: var(--home-name-height);
+    width: auto;
+    max-width: min(95vw, 1200px);
+    margin: 0 auto;
     position: relative;
     top: 0;
-    transform: translateY(-300px);
+    transform: none;
     z-index: 150;
+}
+
+body.home-page {
+    --lights-top: 75px;
+    --home-name-gap: 8px;
 }
 
 body.home-page header {
     overflow: visible;
-    position: relative;
+    position: absolute;
+    left: 0;
+    top: calc(var(--lights-top) - var(--home-name-height) - var(--home-name-gap));
+    width: 100%;
     justify-content: center;
     z-index: 150;
-}
-
-@media (max-width: 900px) {
-    body.home-page .site-logo {
-        transform: translateY(-210px);
-    }
 }
 
 @media (max-width: 600px) {
@@ -167,9 +170,8 @@ body.home-page header {
     }
 
     body.home-page .site-logo {
-        width: min(94vw, var(--home-name-width));
+        --home-name-height: clamp(110px, 20vw, 210px);
         max-width: 94vw;
-        transform: translateY(-120px);
     }
 }
 
@@ -398,7 +400,7 @@ body.auth-page #loginMessage {
 /* STRING LIGHTS */
 #stringLights {
     position: absolute;
-    top: 75px;
+    top: var(--lights-top);
     left: 0;
     width: 100vw;
     aspect-ratio: 1536 / 580;
