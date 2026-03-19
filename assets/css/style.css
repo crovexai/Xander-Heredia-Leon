@@ -138,7 +138,11 @@ header {
 }
 
 body.home-page .site-logo {
-    transform: translateY(-150px) scale(1.25);
+    width: clamp(350px, 90vw, 1375px);
+    position: relative;
+    top: -150px;
+    transform: none;
+    transform-origin: top center;
 }
 
 @media (max-width: 600px) {
