@@ -385,11 +385,13 @@ body.auth-page #loginMessage {
 #stringLights {
     position: absolute;
     top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
+    left: 50%;
+    width: 1536px;
+    height: 580px;
+    max-width: 95vw;
+    transform: translateX(-50%);
     pointer-events: none;
-    z-index: 100;
+    z-index: 120;
 }
 
 #stringLights .lights {
@@ -399,7 +401,7 @@ body.auth-page #loginMessage {
     width: 100%;
     height: 100%;
     object-fit: contain;
-    object-position: center center;
+    object-position: top center;
     opacity: 0;
     transition: opacity 0.35s ease-in-out;
 }
@@ -417,10 +419,10 @@ body.auth-page #loginMessage {
     opacity: 0;
     transition: opacity 0.35s ease-in-out;
     -webkit-mask-repeat: no-repeat;
-    -webkit-mask-position: center center;
+    -webkit-mask-position: top center;
     -webkit-mask-size: contain;
     mask-repeat: no-repeat;
-    mask-position: center center;
+    mask-position: top center;
     mask-size: contain;
 }
 
