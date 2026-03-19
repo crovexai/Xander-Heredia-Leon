@@ -168,6 +168,18 @@ body.home-page header {
     z-index: 200;
 }
 
+body.home-page header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 100vw;
+    border-top: 2px solid rgba(255, 255, 255, 0.9);
+    transform: translateX(-50%);
+    pointer-events: none;
+    z-index: 210;
+}
+
 @media (max-width: 600px) {
     .site-logo {
         width: 96vw;
