@@ -151,10 +151,7 @@ body.home-page .site-logo {
 }
 
 body.home-page {
-    --home-header-top-bumper: 12px;
-    --home-name-y-offset: 0px;
-    --lights-top: 75px;
-    --home-name-gap: -80px;
+    --name-lights-top: 75px;
     position: relative;
 }
 
@@ -162,7 +159,7 @@ body.home-page header {
     overflow: visible;
     position: absolute;
     left: 0;
-    top: var(--lights-top);
+    top: var(--name-lights-top);
     width: 100%;
     padding-top: 0;
     margin: 0;
@@ -428,7 +425,7 @@ body.auth-page #loginMessage {
 /* STRING LIGHTS */
 #stringLights {
     position: absolute;
-    top: 75px;
+    top: var(--name-lights-top);
     left: 0;
     width: 100vw;
     aspect-ratio: 1536 / 580;
