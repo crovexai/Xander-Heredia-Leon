@@ -168,6 +168,26 @@ body.home-page header {
     z-index: 200;
 }
 
+body.home-page header::before,
+body.home-page header::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    width: 100vw;
+    transform: translateX(-50%);
+    border-top: 2px solid rgba(255, 255, 255, 0.9);
+    pointer-events: none;
+    z-index: 210;
+}
+
+body.home-page header::before {
+    top: 0;
+}
+
+body.home-page header::after {
+    top: 100%;
+}
+
 @media (max-width: 600px) {
     .site-logo {
         width: 96vw;
@@ -411,6 +431,25 @@ body.auth-page #loginMessage {
     height: auto;
     pointer-events: none;
     z-index: 120;
+}
+
+#stringLights::before,
+#stringLights::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 100%;
+    border-top: 2px solid rgba(255, 0, 0, 0.9);
+    pointer-events: none;
+    z-index: 121;
+}
+
+#stringLights::before {
+    top: 0;
+}
+
+#stringLights::after {
+    top: 100%;
 }
 
 #stringLights .lights {
