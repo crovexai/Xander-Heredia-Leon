@@ -160,6 +160,7 @@ body.home-page .site-logo {
     width: min(100%, 520px);
     max-width: 100%;
     height: auto;
+    transform: translateY(-200px);
 }
 
 @media (max-width: 600px) {
