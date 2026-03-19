@@ -138,12 +138,12 @@ header {
 }
 
 body.home-page .site-logo {
-    width: auto;
-    height: 780px;
-    max-width: 95vw;
+    width: 1536px;
+    height: auto;
+    max-width: none;
     position: relative;
     top: 0;
-    transform: translateY(-300px);
+    transform: translate(25px, -300px);
     z-index: 150;
 }
 
@@ -385,11 +385,10 @@ body.auth-page #loginMessage {
 #stringLights {
     position: absolute;
     top: 75px;
-    left: 50%;
-    width: 1536px;
-    height: 580px;
-    max-width: 95vw;
-    transform: translateX(-50%);
+    left: 0;
+    width: 100vw;
+    aspect-ratio: 1536 / 580;
+    height: auto;
     pointer-events: none;
     z-index: 120;
 }
