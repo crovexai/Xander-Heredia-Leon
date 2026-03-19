@@ -1,3 +1,5 @@
+console.log("script.js loaded!");
+
 document.addEventListener("DOMContentLoaded", function () {
   console.log("DOMContentLoaded fired");
   const menuBtn = document.getElementById("menu-btn");
@@ -11,24 +13,14 @@ document.addEventListener("DOMContentLoaded", function () {
     return;
   }
 
+  console.log("Setting up click listener...");
   menuBtn.addEventListener("click", function (e) {
-    console.log("Menu button clicked!", e);
+    console.log("✓ Menu button CLICKED");
     e.stopPropagation();
     sidebar.classList.toggle("open");
-    document.body.classList.toggle("sidebar-open");
-    console.log("Sidebar open class:", sidebar.classList.contains("open"));
+    console.log("Sidebar classes:", sidebar.className);
+    console.log("Is open?", sidebar.classList.contains("open"));
   });
 
-  // Close sidebar when clicking outside of it
-  document.addEventListener("click", function (e) {
-    if (
-      sidebar.classList.contains("open") &&
-      !sidebar.contains(e.target) &&
-      e.target !== menuBtn &&
-      !menuBtn.contains(e.target)
-    ) {
-      sidebar.classList.remove("open");
-      document.body.classList.remove("sidebar-open");
-    }
-  });
+  console.log("Script ready");
 });

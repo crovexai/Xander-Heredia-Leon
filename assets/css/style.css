@@ -404,6 +404,10 @@ body.auth-page #sidebar {
     transition: transform 0.3s ease;
     pointer-events: auto;
 }
+
+body.auth-page #sidebar.open {
+    transform: translateX(0);
+}
 }
 
 body.auth-page.sidebar-open {
