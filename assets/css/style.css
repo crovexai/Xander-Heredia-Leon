@@ -368,7 +368,7 @@ body.auth-page #loginMessage {
 /* STRING LIGHTS */
 #stringLights {
     position: fixed;
-    top: 0;
+    top: 110px;
     left: 0;
     width: 100%;
     height: 260px;
