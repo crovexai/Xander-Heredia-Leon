@@ -384,9 +384,10 @@ body.auth-page #loginMessage {
     width: 100%;
     height: 250px;
     object-fit: cover;
-    object-position: top center;
+    object-position: center center;
     opacity: 0;
     transition: opacity 0.35s ease-in-out;
+    mix-blend-mode: screen;
 }
 
 #stringLights .base {
