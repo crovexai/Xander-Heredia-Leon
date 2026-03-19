@@ -154,13 +154,14 @@ body.home-page {
     --home-name-y-offset: 0px;
     --lights-top: 75px;
     --home-name-gap: -80px;
+    position: relative;
 }
 
 body.home-page header {
     overflow: visible;
-    position: relative;
-    left: auto;
-    top: auto;
+    position: absolute;
+    left: 0;
+    top: var(--lights-top);
     width: 100%;
     padding-top: 0;
     margin: 0;
