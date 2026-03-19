@@ -138,8 +138,8 @@ header {
 }
 
 body.home-page .site-logo {
-    width: min(95vw, 1100px);
-    max-width: 95vw;
+    width: calc(var(--hero-width, 100vw) * 0.7161458333);
+    max-width: none;
     height: auto;
     margin: 0 auto;
     position: static;
@@ -160,7 +160,6 @@ body.home-page .site-logo {
     width: min(100%, 520px);
     max-width: 100%;
     height: auto;
-    transform: translateY(-200px);
 }
 
 @media (max-width: 600px) {
@@ -393,10 +392,11 @@ body.auth-page #loginMessage {
 
 /* STRING LIGHTS */
 #stringLights {
+    --hero-width: 100vw;
     position: absolute;
     top: 75px;
     left: 0;
-    width: 100vw;
+    width: var(--hero-width);
     aspect-ratio: 1536 / 580;
     height: auto;
     pointer-events: none;
