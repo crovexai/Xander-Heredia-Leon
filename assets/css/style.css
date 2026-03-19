@@ -147,24 +147,16 @@ body.home-page .site-logo {
     z-index: 150;
 }
 
-body.home-page {
-    --home-header-top-bumper: 12px;
-    --home-name-y-offset: 0px;
-    --lights-top: 75px;
-    --home-name-gap: -80px;
+.title-area {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
 }
 
-body.home-page header {
-    overflow: visible;
-    position: relative;
-    left: auto;
-    top: auto;
-    width: 100%;
-    padding-top: 12px;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.9);
-    margin: 0;
-    justify-content: center;
-    z-index: 200;
+.title-area .title-logo {
+    width: min(100%, 520px);
+    max-width: 100%;
+    height: auto;
 }
 
 @media (max-width: 600px) {
