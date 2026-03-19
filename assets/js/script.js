@@ -1,12 +1,22 @@
 document.addEventListener("DOMContentLoaded", function () {
+  console.log("DOMContentLoaded fired");
   const menuBtn = document.getElementById("menu-btn");
   const sidebar = document.getElementById("sidebar");
 
-  if (!menuBtn || !sidebar) return;
+  console.log("menuBtn:", menuBtn);
+  console.log("sidebar:", sidebar);
 
-  menuBtn.addEventListener("click", function () {
+  if (!menuBtn || !sidebar) {
+    console.log("Menu button or sidebar not found");
+    return;
+  }
+
+  menuBtn.addEventListener("click", function (e) {
+    console.log("Menu button clicked!", e);
+    e.stopPropagation();
     sidebar.classList.toggle("open");
     document.body.classList.toggle("sidebar-open");
+    console.log("Sidebar open class:", sidebar.classList.contains("open"));
   });
 
   // Close sidebar when clicking outside of it
@@ -14,7 +24,8 @@ document.addEventListener("DOMContentLoaded", function () {
     if (
       sidebar.classList.contains("open") &&
       !sidebar.contains(e.target) &&
-      e.target !== menuBtn
+      e.target !== menuBtn &&
+      !menuBtn.contains(e.target)
     ) {
       sidebar.classList.remove("open");
       document.body.classList.remove("sidebar-open");
