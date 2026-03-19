@@ -159,7 +159,7 @@ body.home-page header {
     overflow: visible;
     position: absolute;
     left: 0;
-    top: var(--name-lights-top);
+    top: calc(var(--name-lights-top) + 100px);
     width: 100%;
     padding-top: 0;
     margin: 0;
