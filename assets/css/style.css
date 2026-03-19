@@ -368,10 +368,9 @@ body.auth-page #loginMessage {
 /* STRING LIGHTS */
 #stringLights {
     position: fixed;
-    top: 200px;
-    left: 0;
-    width: 100%;
-    height: 260px;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
     pointer-events: none;
     z-index: 100;
 }
@@ -381,9 +380,9 @@ body.auth-page #loginMessage {
     top: 0;
     left: 0;
     width: 100%;
-    height: 260px;
-    object-fit: cover;
-    object-position: bottom center;
+    height: 100%;
+    object-fit: contain;
+    object-position: center center;
     opacity: 0;
     transition: opacity 0.35s ease-in-out;
 }
@@ -397,15 +396,15 @@ body.auth-page #loginMessage {
     top: 0;
     left: 0;
     width: 100%;
-    height: 260px;
+    height: 100%;
     opacity: 0;
     transition: opacity 0.35s ease-in-out;
     -webkit-mask-repeat: no-repeat;
-    -webkit-mask-position: bottom center;
-    -webkit-mask-size: cover;
+    -webkit-mask-position: center center;
+    -webkit-mask-size: contain;
     mask-repeat: no-repeat;
-    mask-position: bottom center;
-    mask-size: cover;
+    mask-position: center center;
+    mask-size: contain;
 }
 
 #stringLights .glow.red {
