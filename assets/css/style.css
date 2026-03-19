@@ -151,7 +151,7 @@ body.home-page .site-logo {
 
 body.home-page {
     --lights-top: 75px;
-    --home-name-gap: 0px;
+    --home-name-gap: -80px;
 }
 
 body.home-page header {
