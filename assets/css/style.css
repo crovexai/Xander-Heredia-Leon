@@ -138,34 +138,44 @@ header {
 }
 
 body.home-page .site-logo {
-    width: min(95vw, 1100px);
-    max-width: 95vw;
-    height: auto;
+    --home-name-height: clamp(480px, 72vw, 1040px);
+    height: var(--home-name-height);
+    width: auto;
+    max-width: min(95vw, 1200px);
     margin: 0 auto;
-    position: static;
+    position: relative;
+    top: 0;
     transform: none;
     z-index: 150;
 }
 
-.title-area {
-    display: flex;
-    justify-content: center;
-    position: relative;
-    z-index: 160;
-    margin-top: 14px;
-    margin-bottom: 10px;
+body.home-page {
+    --home-header-top-bumper: 12px;
+    --home-name-y-offset: 0px;
+    --lights-top: 75px;
+    --home-name-gap: -80px;
 }
 
-.title-area .title-logo {
-    width: min(100%, 520px);
-    max-width: 100%;
-    height: auto;
-    transform: translateY(-200px);
+body.home-page header {
+    overflow: visible;
+    position: relative;
+    left: auto;
+    top: auto;
+    width: 100%;
+    padding-top: 0;
+    margin: 0;
+    justify-content: center;
+    z-index: 200;
 }
 
 @media (max-width: 600px) {
     .site-logo {
         width: 96vw;
+    }
+
+    body.home-page .site-logo {
+        --home-name-height: clamp(440px, 80vw, 840px);
+        max-width: 94vw;
     }
 }
 
