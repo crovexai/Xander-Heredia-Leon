@@ -138,11 +138,16 @@ header {
 }
 
 body.home-page .site-logo {
-    width: clamp(350px, 90vw, 1375px);
+    width: min(1375px, 90vw);
+    max-height: 280px;
+    height: auto;
     position: relative;
-    top: -150px;
-    transform: none;
-    transform-origin: top center;
+    top: 0;
+    transform: translateY(-150px);
+}
+
+body.home-page header {
+    overflow: visible;
 }
 
 @media (max-width: 600px) {
