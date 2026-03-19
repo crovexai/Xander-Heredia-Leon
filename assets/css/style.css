@@ -137,6 +137,10 @@ header {
                     drop-shadow(2px -2px 4px rgba(255, 255, 255, 0.2));
 }
 
+body.home-page .site-logo {
+    transform: translateY(-100px);
+}
+
 @media (max-width: 600px) {
     .site-logo {
         width: 96vw;
