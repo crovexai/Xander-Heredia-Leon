@@ -145,12 +145,13 @@ body.home-page .site-logo {
     margin: 0 auto;
     position: relative;
     top: 0;
-    transform: none;
+    transform: translateY(var(--home-name-y-offset));
     z-index: 150;
 }
 
 body.home-page {
     --home-header-top-bumper: 12px;
+    --home-name-y-offset: 0px;
     --lights-top: 75px;
     --home-name-gap: -80px;
 }
