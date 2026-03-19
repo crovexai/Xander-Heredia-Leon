@@ -366,6 +366,40 @@ body.auth-page #loginMessage {
     font-size: 14px;
 }
 
+/* STRING LIGHTS */
+#stringLights {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 120px;
+    pointer-events: none;
+    z-index: 5;
+}
+
+#stringLights .lights {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.35s ease-in-out;
+}
+
+#stringLights .base {
+    opacity: 1;
+}
+
+#stringLights .red {
+    filter: drop-shadow(0 0 14px red);
+}
+
+#stringLights .white {
+    filter: drop-shadow(0 0 14px white);
+}
+
 /* CREATE ACCOUNT */
 body.auth-page .create-account {
     margin-top: 30px;
