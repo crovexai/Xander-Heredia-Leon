@@ -1,26 +1,34 @@
-console.log("script.js loaded!");
-
-document.addEventListener("DOMContentLoaded", function () {
-  console.log("DOMContentLoaded fired");
+document.addEventListener("DOMContentLoaded", () => {
   const menuBtn = document.getElementById("menu-btn");
   const sidebar = document.getElementById("sidebar");
 
-  console.log("menuBtn:", menuBtn);
-  console.log("sidebar:", sidebar);
+  if (!menuBtn || !sidebar) return;
 
-  if (!menuBtn || !sidebar) {
-    console.log("Menu button or sidebar not found");
-    return;
-  }
+  const closeSidebar = () => {
+    sidebar.classList.remove("open");
+    document.body.classList.remove("sidebar-open");
+  };
 
-  console.log("Setting up click listener...");
-  menuBtn.addEventListener("click", function (e) {
-    console.log("✓ Menu button CLICKED");
+  const toggleSidebar = (e) => {
     e.stopPropagation();
     sidebar.classList.toggle("open");
-    console.log("Sidebar classes:", sidebar.className);
-    console.log("Is open?", sidebar.classList.contains("open"));
+    document.body.classList.toggle("sidebar-open");
+  };
+
+  menuBtn.addEventListener("click", toggleSidebar);
+
+  document.addEventListener("click", (e) => {
+    const clickedInsideSidebar = sidebar.contains(e.target);
+    const clickedMenuBtn = menuBtn.contains(e.target);
+
+    if (!clickedInsideSidebar && !clickedMenuBtn) {
+      closeSidebar();
+    }
   });
 
-  console.log("Script ready");
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      closeSidebar();
+    }
+  });
 });
