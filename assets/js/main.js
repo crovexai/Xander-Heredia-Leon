@@ -131,11 +131,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const generateBtn = document.getElementById("generate-btn");
   const promptInput = document.getElementById("prompt");
 
-  if (generateBtn) {
+  if (generateBtn && typeof generateXander === 'function') {
     generateBtn.addEventListener("click", generateXander);
   }
 
-  if (promptInput) {
+  if (promptInput && typeof generateXander === 'function') {
     promptInput.addEventListener("keydown", (e) => {
       if (e.key === "Enter") {
         generateXander();
