@@ -1,60 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Xander Login</title>
-    <link rel="stylesheet" href="assets/css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Xander Login</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body class="auth-page">
+  <div class="login-wrapper">
+    <div class="login-container">
+      <h2>Xander Heredia-Leon</h2>
 
-<button id="menu-btn" class="menu-btn">
-    <span></span>
-    <span></span>
-    <span></span>
-</button>
+      <input type="email" id="email" placeholder="Email" />
+      <input type="password" id="password" placeholder="Password" />
 
-<nav id="sidebar">
-    <a href="index.html">Home</a>
-    <a href="ai.html">AI Generator</a>
-    <a href="links.html">Links</a>
-    <a href="bio.html">Bio</a>
-    <a href="contact.html">Contact</a>
-    <a href="admin-login.html">Admin Login</a>
-</nav>
+      <button type="button">Sign In</button>
 
-<div class="login-wrapper">
-<div class="login-container">
+      <p style="margin-top: 16px;">
+        <a href="#">Forgot Password?</a>
+      </p>
 
-    <h2 class="login-title">Xander Herdia-Leon</h2>
-
-    <div class="input-group">
-        <span class="icon">📧</span>
-        <input type="email" id="loginEmail" placeholder="Email">
-    </div>
-
-    <div class="input-group">
-        <span class="icon">🔒</span>
-        <input type="password" id="loginPassword" placeholder="Enter your password">
-    </div>
-
-    <p class="forgot-link" id="forgotPassword">Forgot Password?</p>
-
-    <button id="loginBtn" class="gold-btn">Sign In</button>
-
-    <p id="loginMessage"></p>
-
-    <p class="create-account">
+      <p style="margin-top: 10px;">
         Not a member? <a href="#">Create an Account</a>
-    </p>
-</div>
-</div>
-
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
-<script src="assets/js/firebase-config.js"></script>
-<script src="assets/js/script.js"></script>
-<script src="assets/js/login.js"></script>
-
+      </p>
+    </div>
+  </div>
 </body>
 </html>
