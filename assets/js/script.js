@@ -1,27 +1,32 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const menuBtn = document.getElementById("menu-btn");
+  const menuBtnWrap = document.getElementById("menu-btn");
+  const menuBtn = menuBtnWrap ? menuBtnWrap.querySelector("button") : null;
+  const closeMenuBtn = document.getElementById("close-menu-btn");
   const sidebar = document.getElementById("sidebar");
 
-  if (!menuBtn || !sidebar) return;
+  if (!menuBtnWrap || !menuBtn || !closeMenuBtn || !sidebar) return;
 
-  const closeSidebar = () => {
+  const openSidebar = (e) => {
+    if (e) e.stopPropagation();
+    sidebar.classList.add("open");
+    document.body.classList.add("sidebar-open");
+  };
+
+  const closeSidebar = (e) => {
+    if (e) e.stopPropagation();
     sidebar.classList.remove("open");
     document.body.classList.remove("sidebar-open");
   };
 
-  const toggleSidebar = (e) => {
-    e.stopPropagation();
-    sidebar.classList.toggle("open");
-    document.body.classList.toggle("sidebar-open");
-  };
-
-  menuBtn.addEventListener("click", toggleSidebar);
+  menuBtn.addEventListener("click", openSidebar);
+  closeMenuBtn.addEventListener("click", closeSidebar);
 
   document.addEventListener("click", (e) => {
     const clickedInsideSidebar = sidebar.contains(e.target);
-    const clickedMenuBtn = menuBtn.contains(e.target);
+    const clickedMenuWrap = menuBtnWrap.contains(e.target);
+    const clickedCloseBtn = closeMenuBtn.contains(e.target);
 
-    if (!clickedInsideSidebar && !clickedMenuBtn) {
+    if (!clickedInsideSidebar && !clickedMenuWrap && !clickedCloseBtn) {
       closeSidebar();
     }
   });
