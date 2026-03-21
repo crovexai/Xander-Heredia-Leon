@@ -5,45 +5,45 @@
   }
 
   #sidebar {
-    width: 220px;
-    transform: translateX(-220px);
-  }
+    #menu-btn {
+      position: fixed;
+      top: 16px;
+      left: 16px;
+      z-index: 1000;
+    }
 
-  body.sidebar-open {
-    margin-left: 0;
-  }
+    .menu-btn {
+      cursor: pointer;
+    }
 
-  .top-lights {
-    width: 95%;
-    max-width: 720px;
-    margin-top: 70px;
-  }
+    .menu-btn.image-menu-btn {
+      width: 68px;
+      height: 68px;
+      padding: 0;
+      background: transparent;
+      border: none;
+      border-radius: 0;
+      backdrop-filter: none;
+      box-shadow: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-  .page-title {
-    font-size: 28px;
-  }
-}
+    .menu-btn.image-menu-btn:hover {
+      background: transparent;
+      border: none;
+      box-shadow: none;
+      transform: none;
+    }
 
-/* =========================
-   GLOBAL RESET + VARIABLES
-========================= */
-:root {
-  --gold: #d4af37;
-  --gold-soft: rgba(212, 175, 55, 0.18);
-  --panel: rgba(0, 0, 0, 0.58);
-  --panel-strong: rgba(0, 0, 0, 0.72);
-  --white-soft: rgba(255, 255, 255, 0.85);
-  --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-}
-
-* {
-  box-sizing: border-box;
-}
-
-html,
-body {
-  margin: 0;
-  padding: 0;
+    .menu-icon {
+      display: block;
+      width: 68px;
+      height: 68px;
+      object-fit: contain;
+      pointer-events: none;
+    }
   min-height: 100%;
 }
 
@@ -124,6 +124,35 @@ body::after {
   height: 3px;
   background: var(--gold);
   border-radius: 3px;
+}
+
+#menu-btn.image-menu-btn {
+  width: 64px;
+  height: 64px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.menu-btn.image-menu-btn:hover {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  transform: none;
+}
+
+.menu-icon {
+  display: block;
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
 }
 
 /* =========================
@@ -224,32 +253,46 @@ body.sidebar-open {
 ========================= */
 input,
 select,
-textarea {
-  width: 100%;
-  padding: 14px 14px;
-  margin: 10px 0;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  font-size: 16px;
-  outline: none;
-  background: rgba(255, 255, 255, 0.96);
-  color: #111;
+
+#menu-btn {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 1000;
 }
 
-input:focus,
-select:focus,
-textarea:focus {
-  border-color: rgba(212, 175, 55, 0.85);
-  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.18);
+.menu-btn {
+  cursor: pointer;
 }
 
-.container button,
-.primary-btn {
-  width: 100%;
-  padding: 14px 20px;
-  margin-top: 10px;
-  font-size: 17px;
-  font-weight: 700;
+.menu-btn.image-menu-btn {
+  width: 68px;
+  height: 68px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  backdrop-filter: none;
+  box-shadow: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu-btn.image-menu-btn:hover {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  transform: none;
+}
+
+.menu-icon {
+  display: block;
+  width: 68px;
+  height: 68px;
+  object-fit: contain;
+  pointer-events: none;
+}
   border: none;
   border-radius: 12px;
   background: linear-gradient(135deg, #d4af37, #f4d46e);
