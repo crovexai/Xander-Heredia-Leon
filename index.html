@@ -7,12 +7,38 @@
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
+
+  <!-- String lights -->
   <img
     src="assets/images/background/string-light-base.png"
     alt=""
     class="string-lights"
+    aria-hidden="true"
   />
+
+  <!-- Menu button (top-left) -->
+  <img
+    src="assets/images/background/menu-button.png"
+    alt="Open menu"
+    class="menu-button"
+    id="menuButton"
+    role="button"
+    tabindex="0"
+  />
+
+  <!-- Main content -->
   <main class="home-page">
   </main>
+
+  <!-- JS for future sidebar -->
+  <script>
+    const menuButton = document.getElementById("menuButton");
+
+    menuButton.addEventListener("click", () => {
+      console.log("Menu clicked");
+      // Next step: toggle sidebar
+    });
+  </script>
+
 </body>
 </html>
