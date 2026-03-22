@@ -24,28 +24,13 @@ body::before {
   z-index: 0;
 }
 
-/* String lights */
-.string-lights {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1;
-  width: 100%;
-  height: auto;
-  max-height: 240px;
-  display: block;
-  pointer-events: none;
-  user-select: none;
-}
-
 /* Main page content */
 .home-page {
   position: relative;
-  z-index: 2;
+  z-index: 1;
   width: 100%;
   min-height: 100vh;
   min-height: 100svh;
-  padding-top: 180px;
 }
 
 /* Menu button */
@@ -55,12 +40,15 @@ body::before {
   left: 30px;
   width: 110px;
   height: auto;
-  z-index: 3;
+  z-index: 2;
   cursor: pointer;
   user-select: none;
+
   image-rendering: auto;
   image-rendering: -webkit-optimize-contrast;
+
   filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.5));
+
   transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
@@ -79,14 +67,6 @@ body::before {
     width: 85px;
     top: 20px;
     left: 20px;
-  }
-
-  .string-lights {
-    max-height: 160px;
-  }
-
-  .home-page {
-    padding-top: 140px;
   }
 
   body::before {
