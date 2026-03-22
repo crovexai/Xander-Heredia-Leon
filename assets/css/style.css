@@ -24,10 +24,24 @@ body::before {
   z-index: 0;
 }
 
+/* String lights */
+.string-lights {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  max-height: 240px;
+  display: block;
+  z-index: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
 /* Main page content */
 .home-page {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   width: 100%;
   min-height: 100vh;
   min-height: 100svh;
@@ -41,7 +55,7 @@ body::before {
   width: clamp(110px, 22vw, 220px);
   height: auto;
   display: block;
-  z-index: 2;
+  z-index: 3;
   cursor: pointer;
   user-select: none;
   image-rendering: auto;
@@ -61,9 +75,11 @@ body::before {
 
 /* Tablet */
 @media (max-width: 900px) {
+  .string-lights {
+    max-height: 200px;
+  }
+
   .menu-button {
-    width: 170px;
-    max-width: 42vw;
     top: 10px;
     left: 10px;
   }
@@ -71,11 +87,14 @@ body::before {
 
 /* Mobile */
 @media (max-width: 600px) {
+  .string-lights {
+    max-height: 150px;
+  }
+
   .menu-button {
-    width: 120px;
-    max-width: 38vw;
     top: 8px;
     left: 8px;
+    width: clamp(95px, 30vw, 140px);
   }
 
   body::before {
