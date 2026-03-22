@@ -36,10 +36,12 @@ body::before {
 /* Menu button */
 .menu-button {
   position: fixed;
-  top: 5px;
-  left: 5px;
+  top: 12px;
+  left: 12px;
   width: 220px;
+  max-width: 40vw;
   height: auto;
+  display: block;
   z-index: 2;
   cursor: pointer;
   user-select: none;
@@ -58,12 +60,23 @@ body::before {
   transform: scale(0.95);
 }
 
+/* Tablet */
+@media (max-width: 900px) {
+  .menu-button {
+    width: 170px;
+    max-width: 42vw;
+    top: 10px;
+    left: 10px;
+  }
+}
+
 /* Mobile */
 @media (max-width: 600px) {
   .menu-button {
-    width: 170px;
-    top: 10px;
-    left: 10px;
+    width: 120px;
+    max-width: 38vw;
+    top: 8px;
+    left: 8px;
   }
 
   body::before {
