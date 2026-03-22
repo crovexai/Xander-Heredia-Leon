@@ -11,14 +11,10 @@ body {
   min-height: 100svh;
   position: relative;
   overflow-x: hidden;
-  background-image: url("../images/background/grass-wall.png");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: scroll;
+  background: url("../images/background/grass-wall.png") center / cover no-repeat;
 }
 
-/* Dark overlay across the whole page */
+/* Dark overlay */
 body::before {
   content: "";
   position: fixed;
@@ -28,51 +24,56 @@ body::before {
   z-index: 0;
 }
 
-/* Main page area */
+/* Decorative lights (UNDER button now) */
+.string-lights {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height: auto;
+  display: block;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Main page content */
 .home-page {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   width: 100%;
   min-height: 100vh;
   min-height: 100svh;
 }
 
-/* Top decorative lights */
-.string-lights {
+/* Menu button (TOP layer) */
+.menu-button {
   position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 2;
-  display: block;
-  width: 100%;
+  top: 20px;
+  left: 20px;
+  width: 70px;
   height: auto;
-  max-width: none;
-  pointer-events: none;
+  z-index: 3;
+  cursor: pointer;
   user-select: none;
+  transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
-/* Large desktop tuning */
-@media (min-width: 1400px) {
-  .string-lights {
-    width: 100%;
-  }
+.menu-button:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
 }
 
-/* Tablet */
-@media (max-width: 900px) {
-  .string-lights {
-    width: 100%;
-  }
-
-  .home-page {
-    min-height: 100svh;
-  }
+.menu-button:active {
+  transform: scale(0.95);
 }
 
-/* Mobile */
+/* Mobile adjustments */
 @media (max-width: 600px) {
-  .string-lights {
-    width: 100%;
+  .menu-button {
+    width: 55px;
+    top: 15px;
+    left: 15px;
   }
 
   body::before {
