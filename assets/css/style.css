@@ -30,7 +30,7 @@ body::before {
   top: 0;
   left: 0;
   width: 100%;
-  height: 140px;
+  height: 95px;
   object-fit: cover;
   object-position: top center;
   display: block;
@@ -51,9 +51,9 @@ body::before {
 /* Menu button */
 .menu-button {
   position: fixed;
-  top: 10px;
-  left: 10px;
-  width: clamp(120px, 16vw, 220px);
+  top: 12px;
+  left: 12px;
+  width: clamp(120px, 14vw, 180px);
   height: auto;
   display: block;
   z-index: 3;
@@ -61,7 +61,7 @@ body::before {
   user-select: none;
   image-rendering: auto;
   image-rendering: -webkit-optimize-contrast;
-  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.5));
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.45));
   transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
@@ -77,26 +77,26 @@ body::before {
 /* Tablet */
 @media (max-width: 900px) {
   .string-lights {
-    height: 110px;
+    height: 80px;
   }
 
   .menu-button {
-    top: 8px;
-    left: 8px;
-    width: clamp(105px, 18vw, 170px);
+    top: 10px;
+    left: 10px;
+    width: clamp(105px, 16vw, 150px);
   }
 }
 
 /* Mobile */
 @media (max-width: 600px) {
   .string-lights {
-    height: 85px;
+    height: 65px;
   }
 
   .menu-button {
-    top: 6px;
-    left: 6px;
-    width: clamp(85px, 24vw, 120px);
+    top: 8px;
+    left: 8px;
+    width: clamp(85px, 24vw, 115px);
   }
 
   body::before {
