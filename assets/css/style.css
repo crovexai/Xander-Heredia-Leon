@@ -30,8 +30,9 @@ body::before {
   top: 0;
   left: 0;
   width: 100%;
-  height: auto;
-  max-height: 240px;
+  height: 140px;
+  object-fit: cover;
+  object-position: top center;
   display: block;
   z-index: 1;
   pointer-events: none;
@@ -50,9 +51,9 @@ body::before {
 /* Menu button */
 .menu-button {
   position: fixed;
-  top: 12px;
-  left: 12px;
-  width: clamp(110px, 22vw, 220px);
+  top: 10px;
+  left: 10px;
+  width: clamp(120px, 16vw, 220px);
   height: auto;
   display: block;
   z-index: 3;
@@ -76,25 +77,26 @@ body::before {
 /* Tablet */
 @media (max-width: 900px) {
   .string-lights {
-    max-height: 200px;
+    height: 110px;
   }
 
   .menu-button {
-    top: 10px;
-    left: 10px;
+    top: 8px;
+    left: 8px;
+    width: clamp(105px, 18vw, 170px);
   }
 }
 
 /* Mobile */
 @media (max-width: 600px) {
   .string-lights {
-    max-height: 150px;
+    height: 85px;
   }
 
   .menu-button {
-    top: 8px;
-    left: 8px;
-    width: clamp(95px, 30vw, 140px);
+    top: 6px;
+    left: 6px;
+    width: clamp(85px, 24vw, 120px);
   }
 
   body::before {
