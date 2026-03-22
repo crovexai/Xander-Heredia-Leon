@@ -38,8 +38,7 @@ body::before {
   position: fixed;
   top: 12px;
   left: 12px;
-  width: 220px;
-  max-width: 40vw;
+  width: clamp(110px, 22vw, 220px);
   height: auto;
   display: block;
   z-index: 2;
