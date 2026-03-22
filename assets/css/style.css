@@ -2,13 +2,11 @@ html,
 body {
   margin: 0;
   padding: 0;
+  width: 100%;
   min-height: 100%;
 }
 
 body {
-  background-image: url("../images/background/grass-wall.PNG");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+  min-height: 100vh;
+  background: url("../images/background/grass-wall.PNG") center center / cover no-repeat fixed;
 }
