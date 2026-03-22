@@ -3,5 +3,12 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100%;
-  background: #ffffff;
+}
+
+body {
+  background-image: url("../images/background/grass-wall.PNG");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
