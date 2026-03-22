@@ -43,12 +43,9 @@ body::before {
   z-index: 2;
   cursor: pointer;
   user-select: none;
-
   image-rendering: auto;
   image-rendering: -webkit-optimize-contrast;
-
   filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.5));
-
   transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
@@ -64,9 +61,9 @@ body::before {
 /* Mobile */
 @media (max-width: 600px) {
   .menu-button {
-    width: 85px;
-    top: 20px;
-    left: 20px;
+    width: 170px;
+    top: 10px;
+    left: 10px;
   }
 
   body::before {
