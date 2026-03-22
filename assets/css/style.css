@@ -31,10 +31,8 @@ body::before {
   left: 0;
   z-index: 1;
 
-  width: auto;       /* ← no forced scaling */
-  height: auto;      /* keeps real proportions */
-  max-width: none;   /* prevents browser shrinking */
-
+  width: 100%;
+  height: auto;
   display: block;
   pointer-events: none;
   user-select: none;
