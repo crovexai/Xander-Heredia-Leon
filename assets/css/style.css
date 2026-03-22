@@ -36,9 +36,9 @@ body::before {
 /* Menu button */
 .menu-button {
   position: fixed;
-  top: 30px;
-  left: 30px;
-  width: 110px;
+  top: 5px;
+  left: 5px;
+  width: 220px;
   height: auto;
   z-index: 2;
   cursor: pointer;
