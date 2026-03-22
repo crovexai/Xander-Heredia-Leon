@@ -74,10 +74,6 @@ body::before {
 
 /* Tablet */
 @media (max-width: 900px) {
-  .string-lights {
-    height: 80px;
-  }
-
   .menu-button {
     top: 10px;
     left: 10px;
@@ -87,10 +83,6 @@ body::before {
 
 /* Mobile */
 @media (max-width: 600px) {
-  .string-lights {
-    height: 65px;
-  }
-
   .menu-button {
     top: 8px;
     left: 8px;
