@@ -51,8 +51,8 @@ body::before {
   position: fixed;
   top: 12px;
   left: 12px;
-  height: 90px;
-  width: auto;
+  width: clamp(90px, 18vw, 180px);
+  height: auto;
   display: block;
   z-index: 3;
   cursor: pointer;
@@ -77,18 +77,16 @@ body::before {
   .menu-button {
     top: 10px;
     left: 10px;
-    height: 75px;
-    width: auto;
+    width: clamp(78px, 16vw, 130px);
   }
 }
 
-/* Mobile */
+/* Phone */
 @media (max-width: 600px) {
   .menu-button {
     top: 8px;
     left: 8px;
-    height: 65px;
-    width: auto;
+    width: clamp(60px, 14vw, 95px);
   }
 
   body::before {
