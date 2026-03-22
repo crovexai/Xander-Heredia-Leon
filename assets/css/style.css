@@ -1,3 +1,14 @@
+.string-lights {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: auto;
+  display: block;
+  pointer-events: none;
+  user-select: none;
+  z-index: 1000;
+}
 html,
 body {
   margin: 0;
@@ -14,6 +25,19 @@ body {
   background-repeat: no-repeat;
   background-attachment: scroll;
   overflow-x: hidden;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.35); /* Adjust opacity for desired contrast */
+  z-index: 0;
+  pointer-events: none;
 }
 
 .home-page {
