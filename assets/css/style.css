@@ -1,3 +1,29 @@
+/* Responsive adjustments for tablets and phones */
+@media (max-width: 900px) {
+  .string-lights {
+    width: 100vw;
+    height: auto;
+  }
+  .home-page {
+    min-height: 80vh;
+    padding: 0 10px;
+  }
+}
+
+@media (max-width: 600px) {
+  .string-lights {
+    width: 100vw;
+    height: auto;
+    max-height: 120px;
+  }
+  .home-page {
+    min-height: 60vh;
+    padding: 0 5px;
+  }
+  body::before {
+    height: 100svh;
+  }
+}
 .string-lights {
   position: fixed;
   top: 0;
