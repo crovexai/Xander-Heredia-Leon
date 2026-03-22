@@ -27,12 +27,14 @@ body::before {
 /* ✅ FIXED: String lights at natural size (no stretching) */
 .string-lights {
   position: fixed;
-  top: 0;
+  top: 100px; /* ← moved down */
   left: 0;
   z-index: 1;
 
   width: 100%;
   height: auto;
+  max-height: 240px;
+
   display: block;
   pointer-events: none;
   user-select: none;
