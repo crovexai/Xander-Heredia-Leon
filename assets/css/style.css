@@ -51,14 +51,18 @@ body::before {
   position: fixed;
   top: 12px;
   left: 12px;
-  width: clamp(120px, 14vw, 180px);
-  height: auto;
+
+  height: 90px;     /* control size by height instead */
+  width: auto;      /* preserve aspect ratio */
+
   display: block;
   z-index: 3;
   cursor: pointer;
   user-select: none;
+
   image-rendering: auto;
   image-rendering: -webkit-optimize-contrast;
+
   filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.45));
   transition: transform 0.2s ease, opacity 0.2s ease;
 }
@@ -84,11 +88,11 @@ body::before {
 /* Mobile */
 @media (max-width: 600px) {
   .menu-button {
+    height: 65px;
     top: 8px;
     left: 8px;
-    width: clamp(85px, 24vw, 115px);
   }
-
+}
   body::before {
     background: rgba(0, 0, 0, 0.22);
   }
