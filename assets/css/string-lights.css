@@ -19,19 +19,22 @@
   height: auto;
 }
 
-/* Mask overlays lock to bottom of base lights */
+/* Mask overlay locked to bottom of base lights */
 .string-light-mask {
   position: absolute;
   left: 0;
-  bottom: 0;          /* ← key fix */
+  bottom: 0;
   width: 100%;
   height: auto;
-  display: block;
   z-index: 2;
+
   opacity: 1;
+
+  /* 🔥 THIS IS YOUR ADJUSTMENT */
+  transform: translateY(10px); /* change this value */
 }
 
-/* Optional named mask classes */
+/* Optional mask classes */
 .string-light-mask.mask-1 {}
 .string-light-mask.mask-2 {}
 .string-light-mask.mask-3 {}
