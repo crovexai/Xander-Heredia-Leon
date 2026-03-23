@@ -14,7 +14,7 @@ body {
   background: url("../images/background/grass-wall.png") center / cover no-repeat;
 }
 
-/*  overlay */
+/* Overlay */
 body::before {
   content: "";
   position: fixed;
@@ -39,13 +39,21 @@ body::before {
   top: 14px;
   left: 14px;
   width: 92px;
-  height: auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
   display: block;
   z-index: 4;
   cursor: pointer;
   user-select: none;
   filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.4));
   transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.menu-button img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .menu-button:hover {
@@ -55,6 +63,13 @@ body::before {
 
 .menu-button:active {
   transform: scale(0.96);
+}
+
+/* Optional keyboard focus */
+.menu-button:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.85);
+  outline-offset: 4px;
+  border-radius: 10px;
 }
 
 /* Tablet */
