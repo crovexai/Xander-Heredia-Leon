@@ -46,12 +46,12 @@ body::before {
   min-height: 100svh;
 }
 
-/* Menu button */
+/* Menu button - desktop default */
 .menu-button {
   position: fixed;
   top: 12px;
   left: 12px;
-  width: clamp(90px, 18vw, 180px);
+  width: 180px;
   height: auto;
   display: block;
   z-index: 3;
@@ -75,18 +75,18 @@ body::before {
 /* Tablet */
 @media (max-width: 900px) {
   .menu-button {
+    width: 120px;
     top: 10px;
     left: 10px;
-    width: clamp(78px, 16vw, 130px);
   }
 }
 
 /* Phone */
 @media (max-width: 600px) {
   .menu-button {
+    width: 70px;
     top: 8px;
     left: 8px;
-    width: clamp(60px, 14vw, 95px);
   }
 
   body::before {
