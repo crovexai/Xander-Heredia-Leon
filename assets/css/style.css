@@ -24,19 +24,6 @@ body::before {
   z-index: 0;
 }
 
-/* String lights */
-.string-lights {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: auto;
-  display: block;
-  z-index: 1;
-  pointer-events: none;
-  user-select: none;
-}
-
 /* Main page content */
 .home-page {
   position: relative;
