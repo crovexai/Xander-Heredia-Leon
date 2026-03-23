@@ -14,7 +14,7 @@ body {
   background: url("../images/background/grass-wall.png") center / cover no-repeat;
 }
 
-/* Dark overlay */
+/*  overlay */
 body::before {
   content: "";
   position: fixed;
