@@ -1,4 +1,3 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +6,7 @@
   <title>Home</title>
 
   <link rel="stylesheet" href="assets/css/style.css?v=12" />
-  <link rel="stylesheet" href="assets/css/string-lights.css?v=8" />
+  <link rel="stylesheet" href="assets/css/string-lights.css?v=9" />
 </head>
 <body>
 
@@ -20,47 +19,13 @@
         class="string-lights"
       />
 
-      <img
-        src="assets/images/masks/string-lights/string-light-mask1.png"
-        alt=""
-        class="string-light-mask mask-1"
-      />
-
-      <img
-        src="assets/images/masks/string-lights/string-light-mask2.png"
-        alt=""
-        class="string-light-mask mask-2"
-      />
-
-      <img
-        src="assets/images/masks/string-lights/string-light-mask3.png"
-        alt=""
-        class="string-light-mask mask-3"
-      />
-
-      <img
-        src="assets/images/masks/string-lights/string-light-mask4.png"
-        alt=""
-        class="string-light-mask mask-4"
-      />
-
-      <img
-        src="assets/images/masks/string-lights/string-light-mask5.png"
-        alt=""
-        class="string-light-mask mask-5"
-      />
-
-      <img
-        src="assets/images/masks/string-lights/string-light-mask6.png"
-        alt=""
-        class="string-light-mask mask-6"
-      />
-
-      <img
-        src="assets/images/masks/string-lights/string-light-mask7.png"
-        alt=""
-        class="string-light-mask mask-7"
-      />
+      <img src="assets/images/masks/string-lights/string-light-mask1.png" class="string-light-mask mask-1" />
+      <img src="assets/images/masks/string-lights/string-light-mask2.png" class="string-light-mask mask-2" />
+      <img src="assets/images/masks/string-lights/string-light-mask3.png" class="string-light-mask mask-3" />
+      <img src="assets/images/masks/string-lights/string-light-mask4.png" class="string-light-mask mask-4" />
+      <img src="assets/images/masks/string-lights/string-light-mask5.png" class="string-light-mask mask-5" />
+      <img src="assets/images/masks/string-lights/string-light-mask6.png" class="string-light-mask mask-6" />
+      <img src="assets/images/masks/string-lights/string-light-mask7.png" class="string-light-mask mask-7" />
     </div>
   </div>
 
@@ -90,6 +55,52 @@
         menuButton.click();
       }
     });
+
+    /* =========================
+       BINARY STRING LIGHT SYSTEM
+    ========================= */
+
+    const masks = [
+      document.querySelector(".mask-1"),
+      document.querySelector(".mask-2"),
+      document.querySelector(".mask-3"),
+      document.querySelector(".mask-4"),
+      document.querySelector(".mask-5"),
+      document.querySelector(".mask-6"),
+      document.querySelector(".mask-7"),
+    ];
+
+    let counter = 66;
+    const MIN = 66;
+    const MAX = 106;
+
+    function updateMasks(value) {
+      const binary = value.toString(2).padStart(7, "0");
+
+      for (let i = 0; i < 7; i++) {
+        if (binary[i] === "1") {
+          masks[i].classList.add("on");
+        } else {
+          masks[i].classList.remove("on");
+        }
+      }
+    }
+
+    function tick() {
+      updateMasks(counter);
+
+      counter++;
+
+      if (counter > MAX) {
+        counter = MIN; // 🔁 reset to 66
+      }
+    }
+
+    // initial state
+    updateMasks(counter);
+
+    // animation speed (adjust here)
+    setInterval(tick, 120);
   </script>
 
 </body>
