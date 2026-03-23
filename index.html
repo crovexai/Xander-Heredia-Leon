@@ -18,41 +18,13 @@
         class="string-lights"
       />
 
-      <img
-        src="assets/images/masks/string-lights/string-light-mask1.png"
-        alt=""
-        class="string-light-mask mask-1"
-      />
-      <img
-        src="assets/images/masks/string-lights/string-light-mask2.png"
-        alt=""
-        class="string-light-mask mask-2"
-      />
-      <img
-        src="assets/images/masks/string-lights/string-light-mask3.png"
-        alt=""
-        class="string-light-mask mask-3"
-      />
-      <img
-        src="assets/images/masks/string-lights/string-light-mask4.png"
-        alt=""
-        class="string-light-mask mask-4"
-      />
-      <img
-        src="assets/images/masks/string-lights/string-light-mask5.png"
-        alt=""
-        class="string-light-mask mask-5"
-      />
-      <img
-        src="assets/images/masks/string-lights/string-light-mask6.png"
-        alt=""
-        class="string-light-mask mask-6"
-      />
-      <img
-        src="assets/images/masks/string-lights/string-light-mask7.png"
-        alt=""
-        class="string-light-mask mask-7"
-      />
+      <img src="assets/images/masks/string-lights/string-light-mask1.png" class="string-light-mask mask-1" />
+      <img src="assets/images/masks/string-lights/string-light-mask2.png" class="string-light-mask mask-2" />
+      <img src="assets/images/masks/string-lights/string-light-mask3.png" class="string-light-mask mask-3" />
+      <img src="assets/images/masks/string-lights/string-light-mask4.png" class="string-light-mask mask-4" />
+      <img src="assets/images/masks/string-lights/string-light-mask5.png" class="string-light-mask mask-5" />
+      <img src="assets/images/masks/string-lights/string-light-mask6.png" class="string-light-mask mask-6" />
+      <img src="assets/images/masks/string-lights/string-light-mask7.png" class="string-light-mask mask-7" />
     </div>
   </div>
 
@@ -69,21 +41,6 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      const menuButton = document.getElementById("menuButton");
-
-      if (menuButton) {
-        menuButton.addEventListener("click", function () {
-          console.log("Menu clicked");
-        });
-
-        menuButton.addEventListener("keydown", function (event) {
-          if (event.key === "Enter" || event.key === " ") {
-            event.preventDefault();
-            menuButton.click();
-          }
-        });
-      }
-
       const masks = [
         document.querySelector(".mask-1"),
         document.querySelector(".mask-2"),
@@ -92,47 +49,28 @@
         document.querySelector(".mask-5"),
         document.querySelector(".mask-6"),
         document.querySelector(".mask-7")
-      ].filter(Boolean);
+      ];
 
-      if (masks.length !== 7) {
-        console.error("Not all string light masks were found.");
-        return;
-      }
-
-      let active = [];
-
-      function pickThreeUnique() {
-        const pool = [0, 1, 2, 3, 4, 5, 6];
-        const chosen = [];
-
-        while (chosen.length < 3) {
-          const randomIndex = Math.floor(Math.random() * pool.length);
-          chosen.push(pool[randomIndex]);
-          pool.splice(randomIndex, 1);
-        }
-
-        return chosen;
-      }
-
-      function renderLights(indices) {
+      function flicker() {
         for (let i = 0; i < masks.length; i++) {
-          if (indices.includes(i)) {
-            masks[i].classList.add("on");
+
+          // 60% chance the bulb is active
+          if (Math.random() > 0.4) {
+
+            // brightness range (this is the realism)
+            const intensity = 0.3 + Math.random() * 0.7;
+
+            masks[i].style.opacity = intensity;
+
           } else {
-            masks[i].classList.remove("on");
+            masks[i].style.opacity = 0;
           }
         }
+
+        setTimeout(flicker, 120 + Math.random() * 120);
       }
 
-      function nextLights() {
-        active = pickThreeUnique();
-        renderLights(active);
-        window.setTimeout(nextLights, 350);
-      }
-
-      active = pickThreeUnique();
-      renderLights(active);
-      window.setTimeout(nextLights, 350);
+      flicker();
     });
   </script>
 
