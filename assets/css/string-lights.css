@@ -12,33 +12,32 @@
   user-select: none;
 }
 
-/* Base string lights */
+/* Create one shared alignment box */
+.string-lights-stack {
+  position: relative;
+  width: 100%;
+}
+
+/* Base image sets the size */
 .string-lights {
   display: block;
   width: 100%;
   height: auto;
 }
 
-/* Mask overlay locked to bottom of base lights */
+/* Every mask sits directly on top of the base */
 .string-light-mask {
   position: absolute;
-  left: 0;
-  bottom: 0;
+  inset: 0;
   width: 100%;
-  height: auto;
+  height: 100%;
   display: block;
+  object-fit: contain;
+  opacity: 0;
   z-index: 2;
-  opacity: 1;
-
-  /* Better responsive control */
-  transform: translateY(clamp(80px, 12vw, 175px));
 }
 
-/* Optional mask classes */
-.string-light-mask.mask-1 {}
-.string-light-mask.mask-2 {}
-.string-light-mask.mask-3 {}
-.string-light-mask.mask-4 {}
-.string-light-mask.mask-5 {}
-.string-light-mask.mask-6 {}
-.string-light-mask.mask-7 {}
+/* Show whichever mask you want */
+.string-light-mask.active {
+  opacity: 1;
+}
