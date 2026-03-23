@@ -27,8 +27,7 @@
   display: block;
   object-fit: contain;
   z-index: 2;
-  opacity: 0.35;
+  opacity: 0.45;
   mix-blend-mode: screen;
-  filter: blur(0.35px);
-  will-change: opacity;
+  will-change: opacity, filter;
 }
