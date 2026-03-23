@@ -18,13 +18,41 @@
         class="string-lights"
       />
 
-      <img src="assets/images/masks/string-lights/string-light-mask1.png" class="string-light-mask mask-1" />
-      <img src="assets/images/masks/string-lights/string-light-mask2.png" class="string-light-mask mask-2" />
-      <img src="assets/images/masks/string-lights/string-light-mask3.png" class="string-light-mask mask-3" />
-      <img src="assets/images/masks/string-lights/string-light-mask4.png" class="string-light-mask mask-4" />
-      <img src="assets/images/masks/string-lights/string-light-mask5.png" class="string-light-mask mask-5" />
-      <img src="assets/images/masks/string-lights/string-light-mask6.png" class="string-light-mask mask-6" />
-      <img src="assets/images/masks/string-lights/string-light-mask7.png" class="string-light-mask mask-7" />
+      <img
+        src="assets/images/masks/string-lights/string-light-mask1.png"
+        alt=""
+        class="string-light-mask mask-1"
+      />
+      <img
+        src="assets/images/masks/string-lights/string-light-mask2.png"
+        alt=""
+        class="string-light-mask mask-2"
+      />
+      <img
+        src="assets/images/masks/string-lights/string-light-mask3.png"
+        alt=""
+        class="string-light-mask mask-3"
+      />
+      <img
+        src="assets/images/masks/string-lights/string-light-mask4.png"
+        alt=""
+        class="string-light-mask mask-4"
+      />
+      <img
+        src="assets/images/masks/string-lights/string-light-mask5.png"
+        alt=""
+        class="string-light-mask mask-5"
+      />
+      <img
+        src="assets/images/masks/string-lights/string-light-mask6.png"
+        alt=""
+        class="string-light-mask mask-6"
+      />
+      <img
+        src="assets/images/masks/string-lights/string-light-mask7.png"
+        alt=""
+        class="string-light-mask mask-7"
+      />
     </div>
   </div>
 
@@ -41,6 +69,21 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
+      const menuButton = document.getElementById("menuButton");
+
+      if (menuButton) {
+        menuButton.addEventListener("click", function () {
+          console.log("Menu clicked");
+        });
+
+        menuButton.addEventListener("keydown", function (event) {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            menuButton.click();
+          }
+        });
+      }
+
       const masks = [
         document.querySelector(".mask-1"),
         document.querySelector(".mask-2"),
@@ -49,28 +92,72 @@
         document.querySelector(".mask-5"),
         document.querySelector(".mask-6"),
         document.querySelector(".mask-7")
-      ];
+      ].filter(Boolean);
 
-      function flicker() {
-        for (let i = 0; i < masks.length; i++) {
-
-          // 60% chance the bulb is active
-          if (Math.random() > 0.4) {
-
-            // brightness range (this is the realism)
-            const intensity = 0.3 + Math.random() * 0.7;
-
-            masks[i].style.opacity = intensity;
-
-          } else {
-            masks[i].style.opacity = 0;
-          }
-        }
-
-        setTimeout(flicker, 120 + Math.random() * 120);
+      if (masks.length !== 7) {
+        console.error("Not all string light masks were found.");
+        return;
       }
 
-      flicker();
+      function randomRange(min, max) {
+        return min + Math.random() * (max - min);
+      }
+
+      const lights = masks.map(function (element, index) {
+        return {
+          element: element,
+
+          /* each light has its own resting brightness */
+          base: randomRange(0.18, 0.42),
+
+          /* slow large movement */
+          amp1: randomRange(0.08, 0.18),
+          speed1: randomRange(0.00045, 0.0009),
+          phase1: randomRange(0, Math.PI * 2),
+
+          /* second softer wave to break repetition */
+          amp2: randomRange(0.03, 0.08),
+          speed2: randomRange(0.001, 0.0018),
+          phase2: randomRange(0, Math.PI * 2),
+
+          /* tiny shimmer */
+          shimmerAmp: randomRange(0.008, 0.025),
+          shimmerSpeed: randomRange(0.003, 0.006),
+          shimmerPhase: randomRange(0, Math.PI * 2),
+
+          /* subtle offset so lights don’t move together */
+          offset: index * 0.17
+        };
+      });
+
+      function animate(now) {
+        for (let i = 0; i < lights.length; i++) {
+          const light = lights[i];
+
+          const t1 = now * light.speed1 + light.phase1 + light.offset;
+          const t2 = now * light.speed2 + light.phase2 + light.offset;
+          const t3 = now * light.shimmerSpeed + light.shimmerPhase + light.offset;
+
+          const wave1 = Math.sin(t1);
+          const wave2 = Math.sin(t2);
+          const shimmer = Math.sin(t3);
+
+          let opacity =
+            light.base +
+            wave1 * light.amp1 +
+            wave2 * light.amp2 +
+            shimmer * light.shimmerAmp;
+
+          if (opacity < 0.08) opacity = 0.08;
+          if (opacity > 0.92) opacity = 0.92;
+
+          light.element.style.opacity = opacity.toFixed(3);
+        }
+
+        requestAnimationFrame(animate);
+      }
+
+      requestAnimationFrame(animate);
     });
   </script>
 
