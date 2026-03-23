@@ -11,7 +11,6 @@
 .string-lights-stack {
   position: relative;
   width: 100%;
-  overflow: visible;
 }
 
 .string-lights {
@@ -20,9 +19,7 @@
   height: auto;
 }
 
-/* Bulb mask overlays */
 .string-light-mask {
-  --intensity: 0.58;
   position: absolute;
   inset: 0;
   width: 100%;
@@ -30,109 +27,86 @@
   display: block;
   object-fit: contain;
   z-index: 2;
-  opacity: var(--intensity);
+  opacity: 0;
   mix-blend-mode: screen;
-  will-change: opacity;
-  transform: translateZ(0);
-  backface-visibility: hidden;
-}
-
-/* Individual glow points positioned over each bulb */
-.light-glow {
-  --intensity: 0.58;
-  --scale: 1;
-  --size: 96px;
-
-  position: absolute;
-  width: var(--size);
-  height: var(--size);
-  margin-left: calc(var(--size) * -0.5);
-  margin-top: calc(var(--size) * -0.5);
-  border-radius: 50%;
-  z-index: 1;
   pointer-events: none;
-
-  opacity: calc(var(--intensity) * 0.95);
-  transform: scale(var(--scale)) translateZ(0);
-  transform-origin: center center;
-  will-change: opacity, transform;
-  backface-visibility: hidden;
-  mix-blend-mode: screen;
-
-  /*
-    Very warm incandescent / candle-like approximation
-    for a ~1000K feel.
-  */
-  background:
-    radial-gradient(circle,
-      rgba(255, 248, 228, 0.98) 0%,
-      rgba(255, 231, 175, 0.86) 16%,
-      rgba(255, 199, 112, 0.56) 34%,
-      rgba(255, 160, 68, 0.30) 54%,
-      rgba(255, 120, 34, 0.14) 72%,
-      rgba(255, 100, 20, 0.00) 100%);
 }
 
-.light-glow::after {
-  content: "";
-  position: absolute;
-  inset: 18%;
-  border-radius: 50%;
-  background:
-    radial-gradient(circle,
-      rgba(255, 251, 239, 0.95) 0%,
-      rgba(255, 234, 188, 0.46) 45%,
-      rgba(255, 180, 88, 0.00) 100%);
-  opacity: 0.9;
+/* Only animate 3 masks */
+.mask-1 {
+  animation: lightsCycle1 6s infinite steps(1, end);
 }
 
-/* subtle warm wash under the lights */
-.lights-ambient {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 220px;
-  z-index: 0;
-  pointer-events: none;
-  opacity: 0.18;
-  background:
-    radial-gradient(
-      ellipse at top,
-      rgba(255, 190, 95, 0.22) 0%,
-      rgba(255, 145, 45, 0.10) 28%,
-      rgba(255, 110, 25, 0.04) 48%,
-      rgba(255, 90, 20, 0.00) 72%
-    );
-  filter: blur(22px);
+.mask-2 {
+  animation: lightsCycle2 6s infinite steps(1, end);
 }
 
+.mask-3 {
+  animation: lightsCycle3 6s infinite steps(1, end);
+}
+
+/* Completely disable the other masks */
+.mask-4,
+.mask-5,
+.mask-6,
+.mask-7 {
+  display: none;
+}
+
+@keyframes lightsCycle1 {
+  0%,
+  32% {
+    opacity: 0.42;
+  }
+  33%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes lightsCycle2 {
+  0%,
+  32% {
+    opacity: 0;
+  }
+  33%,
+  65% {
+    opacity: 0.46;
+  }
+  66%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes lightsCycle3 {
+  0%,
+  65% {
+    opacity: 0;
+  }
+  66%,
+  100% {
+    opacity: 0.44;
+  }
+}
+
+/* Reduce work a bit on smaller screens */
 @media (max-width: 900px) {
-  .light-glow {
-    --size: 78px;
+  .string-lights-wrap {
+    width: 100%;
   }
 
-  .lights-ambient {
-    height: 180px;
-    filter: blur(18px);
+  .mask-1,
+  .mask-2,
+  .mask-3 {
+    animation-duration: 7s;
   }
 }
 
 @media (max-width: 600px) {
-  .light-glow {
-    --size: 58px;
-  }
-
-  .lights-ambient {
-    height: 140px;
-    opacity: 0.14;
-    filter: blur(14px);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .string-light-mask,
-  .light-glow {
-    transition: opacity 0.25s ease;
+  .mask-1,
+  .mask-2,
+  .mask-3 {
+    animation-duration: 8s;
   }
 }
