@@ -27,7 +27,7 @@ body::before {
 /* Main page content */
 .home-page {
   position: relative;
-  z-index: 2;
+  z-index: 3;
   width: 100%;
   min-height: 100vh;
   min-height: 100svh;
@@ -41,7 +41,7 @@ body::before {
   width: 92px;
   height: auto;
   display: block;
-  z-index: 3;
+  z-index: 4;
   cursor: pointer;
   user-select: none;
   filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.4));
