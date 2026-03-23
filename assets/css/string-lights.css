@@ -1,9 +1,5 @@
 /* assets/css/string-lights.css */
 
-/* =========================
-   STRING LIGHTS WRAPPER
-========================= */
-
 .string-lights-wrap {
   position: fixed;
   top: 0;
@@ -25,7 +21,7 @@
   height: auto;
 }
 
-/* Masks hidden by default */
+/* hidden by default */
 .string-light-mask {
   position: absolute;
   inset: 0;
@@ -36,16 +32,7 @@
   z-index: 2;
 }
 
-/* Visible state controlled by JS */
+/* visible state */
 .string-light-mask.on {
   display: block;
 }
-
-/* Mask identifiers */
-.string-light-mask.mask-1 {}
-.string-light-mask.mask-2 {}
-.string-light-mask.mask-3 {}
-.string-light-mask.mask-4 {}
-.string-light-mask.mask-5 {}
-.string-light-mask.mask-6 {}
-.string-light-mask.mask-7 {}
