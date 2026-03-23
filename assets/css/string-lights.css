@@ -25,17 +25,23 @@
   height: auto;
 }
 
+/* Masks hidden by default */
 .string-light-mask {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  display: block;
+  display: none;
   object-fit: contain;
-  opacity: 1;
   z-index: 2;
 }
 
+/* Visible state controlled by JS */
+.string-light-mask.on {
+  display: block;
+}
+
+/* Mask identifiers */
 .string-light-mask.mask-1 {}
 .string-light-mask.mask-2 {}
 .string-light-mask.mask-3 {}
