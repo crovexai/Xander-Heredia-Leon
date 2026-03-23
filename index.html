@@ -26,14 +26,17 @@
   </div>
 
   <!-- Menu button -->
-  <img
-    src="assets/images/background/menu-button.png"
-    alt="Open menu"
+  <button
     class="menu-button"
     id="menuButton"
-    role="button"
-    tabindex="0"
-  />
+    aria-label="Open menu"
+    type="button"
+  >
+    <img
+      src="assets/images/background/menu-button.png"
+      alt=""
+    />
+  </button>
 
   <!-- Main content -->
   <main class="home-page"></main>
@@ -43,13 +46,6 @@
 
     menuButton.addEventListener("click", () => {
       console.log("Menu clicked");
-    });
-
-    menuButton.addEventListener("keydown", (event) => {
-      if (event.key === "Enter" || event.key === " ") {
-        event.preventDefault();
-        menuButton.click();
-      }
     });
   </script>
 
