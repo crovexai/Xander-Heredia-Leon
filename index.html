@@ -7,60 +7,6 @@
 
   <link rel="stylesheet" href="assets/css/style.css" />
   <link rel="stylesheet" href="assets/css/string-lights.css" />
-
-  <style>
-    /*
-      Keep the rich mask-based look, but make the glow warm and stable.
-      We set the expensive filter stack once instead of rebuilding it every frame.
-    */
-    .string-light-mask {
-      opacity: 0.55;
-      transform: translateZ(0);
-      backface-visibility: hidden;
-      will-change: opacity;
-    }
-
-    .mask-1,
-    .mask-2,
-    .mask-3,
-    .mask-4,
-    .mask-5,
-    .mask-6,
-    .mask-7 {
-      /*
-        Warm incandescent / ~1000K inspired glow:
-        creamy center, amber spill, soft far bloom.
-      */
-      filter:
-        brightness(1.12)
-        sepia(0.28)
-        saturate(1.35)
-        drop-shadow(0 0 3px rgba(255, 248, 230, 0.95))
-        drop-shadow(0 0 8px rgba(255, 214, 145, 0.65))
-        drop-shadow(0 0 16px rgba(255, 168, 70, 0.36))
-        drop-shadow(0 0 28px rgba(255, 130, 42, 0.16));
-    }
-
-    .string-lights-stack::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 180px;
-      pointer-events: none;
-      z-index: 1;
-      background:
-        radial-gradient(
-          ellipse at top,
-          rgba(255, 195, 95, 0.18) 0%,
-          rgba(255, 145, 55, 0.08) 30%,
-          rgba(255, 110, 30, 0.02) 55%,
-          rgba(255, 110, 30, 0) 75%
-        );
-      mix-blend-mode: screen;
-    }
-  </style>
 </head>
 <body>
 
@@ -153,139 +99,35 @@
         return;
       }
 
-      function randomRange(min, max) {
-        return min + Math.random() * (max - min);
-      }
+      function shuffleArray(array) {
+        const copy = array.slice();
 
-      /*
-        Keep realism by giving bulbs different personalities.
-        Most should be steady. A few should breathe more.
-      */
-      const profiles = [
-        "steady",
-        "soft",
-        "soft",
-        "alive",
-        "steady",
-        "soft",
-        "gentle"
-      ];
-
-      const lights = masks.map(function (element, index) {
-        const profile = profiles[index];
-
-        let base, amp1, amp2, speed1, speed2, shimmerAmp, shimmerSpeed, dipChance;
-
-        if (profile === "steady") {
-          base = randomRange(0.62, 0.76);
-          amp1 = randomRange(0.015, 0.028);
-          amp2 = randomRange(0.008, 0.018);
-          speed1 = randomRange(0.25, 0.45);
-          speed2 = randomRange(0.55, 0.90);
-          shimmerAmp = randomRange(0.004, 0.010);
-          shimmerSpeed = randomRange(1.10, 1.70);
-          dipChance = 0.0010;
-        } else if (profile === "alive") {
-          base = randomRange(0.54, 0.68);
-          amp1 = randomRange(0.030, 0.050);
-          amp2 = randomRange(0.015, 0.028);
-          speed1 = randomRange(0.40, 0.65);
-          speed2 = randomRange(0.90, 1.35);
-          shimmerAmp = randomRange(0.010, 0.018);
-          shimmerSpeed = randomRange(1.50, 2.20);
-          dipChance = 0.0035;
-        } else if (profile === "gentle") {
-          base = randomRange(0.58, 0.70);
-          amp1 = randomRange(0.020, 0.038);
-          amp2 = randomRange(0.010, 0.022);
-          speed1 = randomRange(0.32, 0.52);
-          speed2 = randomRange(0.75, 1.10);
-          shimmerAmp = randomRange(0.007, 0.013);
-          shimmerSpeed = randomRange(1.25, 1.90);
-          dipChance = 0.0020;
-        } else {
-          base = randomRange(0.58, 0.72);
-          amp1 = randomRange(0.020, 0.034);
-          amp2 = randomRange(0.010, 0.020);
-          speed1 = randomRange(0.30, 0.50);
-          speed2 = randomRange(0.70, 1.00);
-          shimmerAmp = randomRange(0.006, 0.012);
-          shimmerSpeed = randomRange(1.20, 1.80);
-          dipChance = 0.0015;
+        for (let i = copy.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          const temp = copy[i];
+          copy[i] = copy[j];
+          copy[j] = temp;
         }
 
-        return {
-          element,
-          base,
-          amp1,
-          speed1,
-          phase1: randomRange(0, Math.PI * 2),
-
-          amp2,
-          speed2,
-          phase2: randomRange(0, Math.PI * 2),
-
-          shimmerAmp,
-          shimmerSpeed,
-          shimmerPhase: randomRange(0, Math.PI * 2),
-
-          offset: index * 0.31,
-          dipChance,
-          dip: 0,
-          dipDecay: randomRange(0.82, 0.91)
-        };
-      });
-
-      function applyIntensity(light, intensity) {
-        if (intensity < 0.22) intensity = 0.22;
-        if (intensity > 0.94) intensity = 0.94;
-        light.element.style.opacity = intensity.toFixed(3);
+        return copy;
       }
 
-      lights.forEach(function (light) {
-        applyIntensity(light, light.base);
-      });
+      function showThreeRandomMasks() {
+        const shuffledMasks = shuffleArray(masks);
+        const activeMasks = shuffledMasks.slice(0, 3);
 
-      /*
-        Cap updates for smoother performance.
-        We keep requestAnimationFrame timing, but only update around 30fps.
-      */
-      let lastUpdate = 0;
-      const interval = 1000 / 30;
+        masks.forEach(function (mask) {
+          mask.style.opacity = "0";
+          mask.style.filter = "none";
+        });
 
-      function animate(now) {
-        if (!lastUpdate || now - lastUpdate >= interval) {
-          lastUpdate = now;
-          const t = now / 1000;
-
-          for (let i = 0; i < lights.length; i++) {
-            const light = lights[i];
-
-            const wave1 = Math.sin((t * light.speed1) + light.phase1 + light.offset);
-            const wave2 = Math.sin((t * light.speed2) + light.phase2 + light.offset);
-            const shimmer = Math.sin((t * light.shimmerSpeed) + light.shimmerPhase + light.offset);
-
-            if (Math.random() < light.dipChance) {
-              light.dip = randomRange(0.015, 0.055);
-            }
-
-            light.dip *= light.dipDecay;
-
-            let opacity =
-              light.base +
-              wave1 * light.amp1 +
-              wave2 * light.amp2 +
-              shimmer * light.shimmerAmp -
-              light.dip;
-
-            applyIntensity(light, opacity);
-          }
-        }
-
-        requestAnimationFrame(animate);
+        activeMasks.forEach(function (mask) {
+          mask.style.opacity = "0.45";
+          mask.style.filter = "none";
+        });
       }
 
-      requestAnimationFrame(animate);
+      showThreeRandomMasks();
     });
   </script>
 
