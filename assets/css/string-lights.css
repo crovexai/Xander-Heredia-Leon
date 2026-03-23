@@ -19,6 +19,7 @@
   height: auto;
 }
 
+/* LIGHT LAYERS */
 .string-light-mask {
   position: absolute;
   inset: 0;
@@ -27,9 +28,15 @@
   display: block;
   object-fit: contain;
   z-index: 2;
-  opacity: 0;
-}
 
-.string-light-mask.on {
-  opacity: 1;
+  /* start off */
+  opacity: 0;
+
+  /* 🔥 THIS MAKES LIGHT ADD TOGETHER */
+  mix-blend-mode: screen;
+
+  /* slight glow softness */
+  filter: blur(1px);
+
+  transition: opacity 0.2s linear;
 }
