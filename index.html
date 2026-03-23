@@ -6,37 +6,72 @@
   <title>Home</title>
 
   <link rel="stylesheet" href="assets/css/style.css?v=12" />
-  <link rel="stylesheet" href="assets/css/string-lights.css?v=6" />
+  <link rel="stylesheet" href="assets/css/string-lights.css?v=7" />
 </head>
 <body>
 
   <!-- String lights system -->
   <div class="string-lights-wrap" aria-hidden="true">
-    <img
-      src="assets/images/background/string-light-base.png"
-      alt=""
-      class="string-lights"
-    />
+    <div class="string-lights-stack">
+      <img
+        src="assets/images/background/string-light-base.png"
+        alt=""
+        class="string-lights"
+      />
 
-    <img
-      src="assets/images/masks/string-lights/string-light-mask1.png"
-      alt=""
-      class="string-light-mask mask-1"
-    />
+      <img
+        src="assets/images/masks/string-lights/string-light-mask1.png"
+        alt=""
+        class="string-light-mask mask-1 active"
+      />
+
+      <img
+        src="assets/images/masks/string-lights/string-light-mask2.png"
+        alt=""
+        class="string-light-mask mask-2"
+      />
+
+      <img
+        src="assets/images/masks/string-lights/string-light-mask3.png"
+        alt=""
+        class="string-light-mask mask-3"
+      />
+
+      <img
+        src="assets/images/masks/string-lights/string-light-mask4.png"
+        alt=""
+        class="string-light-mask mask-4"
+      />
+
+      <img
+        src="assets/images/masks/string-lights/string-light-mask5.png"
+        alt=""
+        class="string-light-mask mask-5"
+      />
+
+      <img
+        src="assets/images/masks/string-lights/string-light-mask6.png"
+        alt=""
+        class="string-light-mask mask-6"
+      />
+
+      <img
+        src="assets/images/masks/string-lights/string-light-mask7.png"
+        alt=""
+        class="string-light-mask mask-7"
+      />
+    </div>
   </div>
 
   <!-- Menu button -->
-  <button
+  <img
+    src="assets/images/background/menu-button.png"
+    alt="Open menu"
     class="menu-button"
     id="menuButton"
-    aria-label="Open menu"
-    type="button"
-  >
-    <img
-      src="assets/images/background/menu-button.png"
-      alt=""
-    />
-  </button>
+    role="button"
+    tabindex="0"
+  />
 
   <!-- Main content -->
   <main class="home-page"></main>
@@ -46,6 +81,13 @@
 
     menuButton.addEventListener("click", () => {
       console.log("Menu clicked");
+    });
+
+    menuButton.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        menuButton.click();
+      }
     });
   </script>
 
