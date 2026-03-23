@@ -1,3 +1,5 @@
+/* assets/css/string-lights.css */
+
 /* =========================
    STRING LIGHTS WRAPPER
 ========================= */
@@ -12,20 +14,17 @@
   user-select: none;
 }
 
-/* Create one shared alignment box */
 .string-lights-stack {
   position: relative;
   width: 100%;
 }
 
-/* Base image sets the size */
 .string-lights {
   display: block;
   width: 100%;
   height: auto;
 }
 
-/* Every mask sits directly on top of the base */
 .string-light-mask {
   position: absolute;
   inset: 0;
@@ -33,11 +32,14 @@
   height: 100%;
   display: block;
   object-fit: contain;
-  opacity: 0;
+  opacity: 1;
   z-index: 2;
 }
 
-/* Show whichever mask you want */
-.string-light-mask.active {
-  opacity: 1;
-}
+.string-light-mask.mask-1 {}
+.string-light-mask.mask-2 {}
+.string-light-mask.mask-3 {}
+.string-light-mask.mask-4 {}
+.string-light-mask.mask-5 {}
+.string-light-mask.mask-6 {}
+.string-light-mask.mask-7 {}
