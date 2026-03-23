@@ -22,14 +22,11 @@
   position: fixed;
   top: 0;
   left: 0;
-
   width: 100%;
   height: auto;
-
-  z-index: 2; /* above lights */
-
+  display: block;
+  z-index: 2;
   pointer-events: none;
   user-select: none;
-
-  opacity: 1; /* adjust if needed */
+  opacity: 1;
 }
