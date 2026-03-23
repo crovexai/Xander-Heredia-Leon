@@ -63,24 +63,18 @@
       document.querySelector(".mask-7")
     ];
 
-    function getRandomThree() {
-      const indices = [0, 1, 2, 3, 4, 5, 6];
+    let active = new Set();
 
-      for (let i = indices.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        const temp = indices[i];
-        indices[i] = indices[j];
-        indices[j] = temp;
+    function initLights() {
+      while (active.size < 3) {
+        active.add(Math.floor(Math.random() * 7));
       }
-
-      return indices.slice(0, 3);
+      renderLights();
     }
 
-    function updateMasks() {
-      const selected = getRandomThree();
-
+    function renderLights() {
       for (let i = 0; i < masks.length; i++) {
-        if (selected.indexOf(i) !== -1) {
+        if (active.has(i)) {
           masks[i].classList.add("on");
         } else {
           masks[i].classList.remove("on");
@@ -88,8 +82,22 @@
       }
     }
 
-    updateMasks();
-    setInterval(updateMasks, 700);
+    function tickLights() {
+      const activeArray = Array.from(active);
+      const removeIndex = activeArray[Math.floor(Math.random() * activeArray.length)];
+      active.delete(removeIndex);
+
+      let newIndex;
+      do {
+        newIndex = Math.floor(Math.random() * 7);
+      } while (active.has(newIndex));
+
+      active.add(newIndex);
+      renderLights();
+    }
+
+    initLights();
+    setInterval(tickLights, 500);
   </script>
 
 </body>
