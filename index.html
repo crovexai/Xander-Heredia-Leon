@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Home</title>
-  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/style.css?v=5" />
 </head>
 <body>
 
@@ -17,14 +17,14 @@
   />
 
   <!-- Menu button -->
-  <img
-    src="assets/images/background/menu-button.png"
-    alt="Open menu"
-    class="menu-button"
-    id="menuButton"
-    role="button"
-    tabindex="0"
-  />
+  <button class="menu-button" id="menuButton" aria-label="Open menu">
+    <span class="menu-icon-box">
+      <span class="menu-line"></span>
+      <span class="menu-line"></span>
+      <span class="menu-line"></span>
+    </span>
+    <span class="menu-label">Menu</span>
+  </button>
 
   <!-- Main content -->
   <main class="home-page"></main>
@@ -34,13 +34,6 @@
 
     menuButton.addEventListener("click", () => {
       console.log("Menu clicked");
-    });
-
-    menuButton.addEventListener("keydown", (event) => {
-      if (event.key === "Enter" || event.key === " ") {
-        event.preventDefault();
-        menuButton.click();
-      }
     });
   </script>
 
