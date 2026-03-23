@@ -106,27 +106,24 @@
       const lights = masks.map(function (element, index) {
         return {
           element: element,
+          base: randomRange(0.35, 0.55),
 
-          /* each light has its own resting brightness */
-          base: randomRange(0.18, 0.42),
-
-          /* slow large movement */
-          amp1: randomRange(0.08, 0.18),
-          speed1: randomRange(0.00045, 0.0009),
+          amp1: randomRange(0.10, 0.18),
+          speed1: randomRange(0.00035, 0.0007),
           phase1: randomRange(0, Math.PI * 2),
 
-          /* second softer wave to break repetition */
-          amp2: randomRange(0.03, 0.08),
-          speed2: randomRange(0.001, 0.0018),
+          amp2: randomRange(0.03, 0.07),
+          speed2: randomRange(0.0009, 0.0015),
           phase2: randomRange(0, Math.PI * 2),
 
-          /* tiny shimmer */
-          shimmerAmp: randomRange(0.008, 0.025),
-          shimmerSpeed: randomRange(0.003, 0.006),
+          shimmerAmp: randomRange(0.01, 0.025),
+          shimmerSpeed: randomRange(0.002, 0.004),
           shimmerPhase: randomRange(0, Math.PI * 2),
 
-          /* subtle offset so lights don’t move together */
-          offset: index * 0.17
+          glowBase: randomRange(0.85, 1.1),
+          glowAmp: randomRange(0.15, 0.35),
+
+          offset: index * 0.23
         };
       });
 
@@ -148,10 +145,21 @@
             wave2 * light.amp2 +
             shimmer * light.shimmerAmp;
 
-          if (opacity < 0.08) opacity = 0.08;
-          if (opacity > 0.92) opacity = 0.92;
+          if (opacity < 0.18) opacity = 0.18;
+          if (opacity > 0.95) opacity = 0.95;
+
+          const glowStrength = light.glowBase + ((wave1 + 1) * 0.5) * light.glowAmp;
+          const nearGlow = (2.5 + glowStrength * 1.5).toFixed(2);
+          const midGlow = (6 + glowStrength * 3).toFixed(2);
+          const farGlow = (12 + glowStrength * 6).toFixed(2);
+          const brightness = (1.05 + glowStrength * 0.18).toFixed(2);
 
           light.element.style.opacity = opacity.toFixed(3);
+          light.element.style.filter =
+            "brightness(" + brightness + ") " +
+            "drop-shadow(0 0 " + nearGlow + "px rgba(255,255,255,0.95)) " +
+            "drop-shadow(0 0 " + midGlow + "px rgba(255,255,255,0.55)) " +
+            "drop-shadow(0 0 " + farGlow + "px rgba(255,255,255,0.28))";
         }
 
         requestAnimationFrame(animate);
