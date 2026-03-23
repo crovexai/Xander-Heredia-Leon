@@ -1,104 +1,65 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Home</title>
+<script>
+  const menuButton = document.getElementById("menuButton");
 
-  <link rel="stylesheet" href="assets/css/style.css" />
-  <link rel="stylesheet" href="assets/css/string-lights.css" />
-</head>
-<body>
+  menuButton.addEventListener("click", () => {
+    console.log("Menu clicked");
+  });
 
-  <div class="string-lights-wrap" aria-hidden="true">
-    <div class="string-lights-stack">
-      <img
-        src="assets/images/background/string-light-base.png"
-        alt=""
-        class="string-lights"
-      />
-
-      <img src="assets/images/masks/string-lights/string-light-mask1.png" alt="" class="string-light-mask mask-1" />
-      <img src="assets/images/masks/string-lights/string-light-mask2.png" alt="" class="string-light-mask mask-2" />
-      <img src="assets/images/masks/string-lights/string-light-mask3.png" alt="" class="string-light-mask mask-3" />
-      <img src="assets/images/masks/string-lights/string-light-mask4.png" alt="" class="string-light-mask mask-4" />
-      <img src="assets/images/masks/string-lights/string-light-mask5.png" alt="" class="string-light-mask mask-5" />
-      <img src="assets/images/masks/string-lights/string-light-mask6.png" alt="" class="string-light-mask mask-6" />
-      <img src="assets/images/masks/string-lights/string-light-mask7.png" alt="" class="string-light-mask mask-7" />
-    </div>
-  </div>
-
-  <img
-    src="assets/images/background/menu-button.png"
-    alt="Open menu"
-    class="menu-button"
-    id="menuButton"
-    role="button"
-    tabindex="0"
-  />
-
-  <main class="home-page"></main>
-
-  <script>
-    const menuButton = document.getElementById("menuButton");
-
-    menuButton.addEventListener("click", () => {
-      console.log("Menu clicked");
-    });
-
-    menuButton.addEventListener("keydown", (event) => {
-      if (event.key === "Enter" || event.key === " ") {
-        event.preventDefault();
-        menuButton.click();
-      }
-    });
-
-    const masks = [
-      document.querySelector(".mask-1"),
-      document.querySelector(".mask-2"),
-      document.querySelector(".mask-3"),
-      document.querySelector(".mask-4"),
-      document.querySelector(".mask-5"),
-      document.querySelector(".mask-6"),
-      document.querySelector(".mask-7")
-    ];
-
-    let active = new Set();
-
-    function initLights() {
-      while (active.size < 3) {
-        active.add(Math.floor(Math.random() * 7));
-      }
-      renderLights();
+  menuButton.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      menuButton.click();
     }
+  });
 
-    function renderLights() {
-      for (let i = 0; i < masks.length; i++) {
-        if (active.has(i)) {
-          masks[i].classList.add("on");
-        } else {
-          masks[i].classList.remove("on");
-        }
+  const masks = [
+    document.querySelector(".mask-1"),
+    document.querySelector(".mask-2"),
+    document.querySelector(".mask-3"),
+    document.querySelector(".mask-4"),
+    document.querySelector(".mask-5"),
+    document.querySelector(".mask-6"),
+    document.querySelector(".mask-7")
+  ];
+
+  let active = new Set();
+
+  function initLights() {
+    while (active.size < 3) {
+      active.add(Math.floor(Math.random() * 7));
+    }
+    renderLights();
+    scheduleNextTick();
+  }
+
+  function renderLights() {
+    for (let i = 0; i < masks.length; i++) {
+      if (active.has(i)) {
+        masks[i].classList.add("on");
+      } else {
+        masks[i].classList.remove("on");
       }
     }
+  }
 
-    function tickLights() {
-      const activeArray = Array.from(active);
-      const removeIndex = activeArray[Math.floor(Math.random() * activeArray.length)];
-      active.delete(removeIndex);
+  function tickLights() {
+    const activeArray = Array.from(active);
+    const removeIndex = activeArray[Math.floor(Math.random() * activeArray.length)];
+    active.delete(removeIndex);
 
-      let newIndex;
-      do {
-        newIndex = Math.floor(Math.random() * 7);
-      } while (active.has(newIndex));
+    let newIndex;
+    do {
+      newIndex = Math.floor(Math.random() * 7);
+    } while (active.has(newIndex));
 
-      active.add(newIndex);
-      renderLights();
-    }
+    active.add(newIndex);
+    renderLights();
+    scheduleNextTick();
+  }
 
-    initLights();
-    setInterval(tickLights, 500);
-  </script>
+  function scheduleNextTick() {
+    setTimeout(tickLights, 220);
+  }
 
-</body>
-</html>
+  initLights();
+</script>
