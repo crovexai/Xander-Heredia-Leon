@@ -26,12 +26,12 @@
   bottom: 0;
   width: 100%;
   height: auto;
+  display: block;
   z-index: 2;
-
   opacity: 1;
 
-  /* 🔥 THIS IS YOUR ADJUSTMENT */
-  transform: translateY(175px); /* change this value */
+  /* Better responsive control */
+  transform: translateY(clamp(80px, 12vw, 175px));
 }
 
 /* Optional mask classes */
