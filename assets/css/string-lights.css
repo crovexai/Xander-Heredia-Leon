@@ -1,32 +1,37 @@
 /* =========================
-   SHARED STRING LIGHT LAYER
-   All string-light images use the exact same sizing
-   so their bottom edges stay aligned.
+   STRING LIGHTS WRAPPER
 ========================= */
 
-.string-light-layer {
+.string-lights-wrap {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: auto;
-  display: block;
+  z-index: 1;
   pointer-events: none;
   user-select: none;
 }
 
 /* Base string lights */
 .string-lights {
-  z-index: 1;
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
-/* Mask overlays */
+/* Mask overlays lock to bottom of base lights */
 .string-light-mask {
+  position: absolute;
+  left: 0;
+  bottom: 0;          /* ← key fix */
+  width: 100%;
+  height: auto;
+  display: block;
   z-index: 2;
   opacity: 1;
 }
 
-/* Optional named mask classes for later */
+/* Optional named mask classes */
 .string-light-mask.mask-1 {}
 .string-light-mask.mask-2 {}
 .string-light-mask.mask-3 {}
