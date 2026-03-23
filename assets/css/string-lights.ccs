@@ -1,30 +1,7 @@
-html,
-body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  min-height: 100%;
-}
+/* =========================
+   STRING LIGHTS BASE
+========================= */
 
-body {
-  min-height: 100vh;
-  min-height: 100svh;
-  position: relative;
-  overflow-x: hidden;
-  background: url("../images/background/grass-wall.png") center / cover no-repeat;
-}
-
-/* Dark overlay */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.28);
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* String lights layer */
 .string-lights {
   position: fixed;
   top: 0;
@@ -35,80 +12,24 @@ body::before {
   z-index: 1;
   pointer-events: none;
   user-select: none;
-
-  /* Mask 1 */
-  -webkit-mask-image: url("../images/masks/string-lights/string-light-mask1.png");
-  -webkit-mask-repeat: no-repeat;
-  -webkit-mask-position: top center;
-  -webkit-mask-size: 100% auto;
-
-  mask-image: url("../images/masks/string-lights/string-light-mask1.png");
-  mask-repeat: no-repeat;
-  mask-position: top center;
-  mask-size: 100% auto;
 }
 
-/* Main page content */
-.home-page {
-  position: relative;
-  z-index: 2;
-  width: 100%;
-  min-height: 100vh;
-  min-height: 100svh;
-}
+/* =========================
+   MASK OVERLAY (SEPARATE)
+========================= */
 
-/* Menu button */
-.menu-button {
+.string-light-mask {
   position: fixed;
-  top: 14px;
-  left: 14px;
-  width: 92px;
+  top: 0;
+  left: 0;
+
+  width: 100%;
   height: auto;
-  display: block;
-  z-index: 3;
-  cursor: pointer;
+
+  z-index: 2; /* above lights */
+
+  pointer-events: none;
   user-select: none;
-  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.4));
-  transition: transform 0.2s ease, opacity 0.2s ease;
-}
 
-.menu-button:hover {
-  transform: scale(1.05);
-  opacity: 0.96;
-}
-
-.menu-button:active {
-  transform: scale(0.96);
-}
-
-/* Tablet */
-@media (max-width: 900px) {
-  .menu-button {
-    top: 10px;
-    left: 10px;
-    width: 76px;
-  }
-
-  .string-lights {
-    -webkit-mask-size: 100% auto;
-    mask-size: 100% auto;
-  }
-}
-
-/* Phone */
-@media (max-width: 600px) {
-  .menu-button {
-    top: 8px;
-    left: 8px;
-    width: 58px;
-  }
-
-  .string-lights {
-    -webkit-mask-size: 100% auto;
-    mask-size: 100% auto;
-  }
-
-  body::before {
-    background: rgba(0, 0, 0, 0.22);
-  }
+  opacity: 1; /* adjust if needed */
 }
