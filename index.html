@@ -83,51 +83,6 @@
           }
         });
       }
-
-      const masks = [
-        document.querySelector(".mask-1"),
-        document.querySelector(".mask-2"),
-        document.querySelector(".mask-3"),
-        document.querySelector(".mask-4"),
-        document.querySelector(".mask-5"),
-        document.querySelector(".mask-6"),
-        document.querySelector(".mask-7")
-      ].filter(Boolean);
-
-      if (masks.length !== 7) {
-        console.error("Not all string light masks were found.");
-        return;
-      }
-
-      function shuffleArray(array) {
-        const copy = array.slice();
-
-        for (let i = copy.length - 1; i > 0; i--) {
-          const j = Math.floor(Math.random() * (i + 1));
-          const temp = copy[i];
-          copy[i] = copy[j];
-          copy[j] = temp;
-        }
-
-        return copy;
-      }
-
-      function showThreeRandomMasks() {
-        const shuffledMasks = shuffleArray(masks);
-        const activeMasks = shuffledMasks.slice(0, 3);
-
-        masks.forEach(function (mask) {
-          mask.style.opacity = "0";
-          mask.style.filter = "none";
-        });
-
-        activeMasks.forEach(function (mask) {
-          mask.style.opacity = "0.45";
-          mask.style.filter = "none";
-        });
-      }
-
-      showThreeRandomMasks();
     });
   </script>
 
