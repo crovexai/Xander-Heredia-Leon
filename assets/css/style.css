@@ -46,68 +46,45 @@ body::before {
   min-height: 100svh;
 }
 
-/* MENU BUTTON CONTAINER (cropped view) */
+/* Menu button */
 .menu-button {
   position: fixed;
-  top: 12px;
-  left: 12px;
-  z-index: 3;
-
-  width: 140px;   /* visible cropped width */
-  height: 70px;   /* visible cropped height */
-
-  overflow: hidden; /* ← crops the image */
-
+  top: 14px;
+  left: 14px;
+  width: 92px;
+  height: auto;
   display: block;
+  z-index: 3;
   cursor: pointer;
   user-select: none;
-
-  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.45));
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.4));
   transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
-/* IMAGE INSIDE (scaled and positioned) */
-.menu-button img {
-  width: 260px;       /* scale original image */
-  height: auto;
-  transform: translateX(0); /* adjust if needed */
-}
-
-/* Hover / click effects */
 .menu-button:hover {
   transform: scale(1.05);
-  opacity: 0.95;
+  opacity: 0.96;
 }
 
 .menu-button:active {
-  transform: scale(0.95);
+  transform: scale(0.96);
 }
 
 /* Tablet */
 @media (max-width: 900px) {
   .menu-button {
-    width: 120px;
-    height: 60px;
     top: 10px;
     left: 10px;
-  }
-
-  .menu-button img {
-    width: 220px;
+    width: 76px;
   }
 }
 
-/* Mobile */
+/* Phone */
 @media (max-width: 600px) {
   .menu-button {
-    width: 100px;
-    height: 50px;
     top: 8px;
     left: 8px;
-  }
-
-  .menu-button img {
-    width: 180px;
+    width: 58px;
   }
 
   body::before {
