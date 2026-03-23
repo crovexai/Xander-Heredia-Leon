@@ -31,7 +31,7 @@
   opacity: 1;
 
   /* 🔥 THIS IS YOUR ADJUSTMENT */
-  transform: translateY(10px); /* change this value */
+  transform: translateY(150px); /* change this value */
 }
 
 /* Optional mask classes */
