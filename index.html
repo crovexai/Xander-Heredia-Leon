@@ -1,51 +1,96 @@
-<script>
-  const menuButton = document.getElementById("menuButton");
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home</title>
 
-  menuButton.addEventListener("click", () => {
-    console.log("Menu clicked");
-  });
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/string-lights.css" />
+</head>
+<body>
 
-  menuButton.addEventListener("keydown", (event) => {
-    if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault();
-      menuButton.click();
+  <div class="string-lights-wrap" aria-hidden="true">
+    <div class="string-lights-stack">
+      <img
+        src="assets/images/background/string-light-base.png"
+        alt=""
+        class="string-lights"
+      />
+
+      <img src="assets/images/masks/string-lights/string-light-mask1.png" alt="" class="string-light-mask mask-1" />
+      <img src="assets/images/masks/string-lights/string-light-mask2.png" alt="" class="string-light-mask mask-2" />
+      <img src="assets/images/masks/string-lights/string-light-mask3.png" alt="" class="string-light-mask mask-3" />
+      <img src="assets/images/masks/string-lights/string-light-mask4.png" alt="" class="string-light-mask mask-4" />
+      <img src="assets/images/masks/string-lights/string-light-mask5.png" alt="" class="string-light-mask mask-5" />
+      <img src="assets/images/masks/string-lights/string-light-mask6.png" alt="" class="string-light-mask mask-6" />
+      <img src="assets/images/masks/string-lights/string-light-mask7.png" alt="" class="string-light-mask mask-7" />
+    </div>
+  </div>
+
+  <img
+    src="assets/images/background/menu-button.png"
+    alt="Open menu"
+    class="menu-button"
+    id="menuButton"
+    role="button"
+    tabindex="0"
+  />
+
+  <main class="home-page"></main>
+
+  <script>
+    const menuButton = document.getElementById("menuButton");
+
+    menuButton.addEventListener("click", () => {
+      console.log("Menu clicked");
+    });
+
+    menuButton.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        menuButton.click();
+      }
+    });
+
+    const masks = [
+      document.querySelector(".mask-1"),
+      document.querySelector(".mask-2"),
+      document.querySelector(".mask-3"),
+      document.querySelector(".mask-4"),
+      document.querySelector(".mask-5"),
+      document.querySelector(".mask-6"),
+      document.querySelector(".mask-7")
+    ];
+
+    function getRandomThree() {
+      const indices = [0, 1, 2, 3, 4, 5, 6];
+
+      for (let i = indices.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        const temp = indices[i];
+        indices[i] = indices[j];
+        indices[j] = temp;
+      }
+
+      return indices.slice(0, 3);
     }
-  });
 
-  const masks = [
-    document.querySelector(".mask-1"),
-    document.querySelector(".mask-2"),
-    document.querySelector(".mask-3"),
-    document.querySelector(".mask-4"),
-    document.querySelector(".mask-5"),
-    document.querySelector(".mask-6"),
-    document.querySelector(".mask-7")
-  ];
+    function updateMasks() {
+      const selected = getRandomThree();
 
-  function getRandomThree() {
-    const indices = [0, 1, 2, 3, 4, 5, 6];
-
-    for (let i = indices.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [indices[i], indices[j]] = [indices[j], indices[i]];
+      for (let i = 0; i < masks.length; i++) {
+        if (selected.indexOf(i) !== -1) {
+          masks[i].classList.add("on");
+        } else {
+          masks[i].classList.remove("on");
+        }
+      }
     }
 
-    return indices.slice(0, 3);
-  }
+    updateMasks();
+    setInterval(updateMasks, 700);
+  </script>
 
-  function updateMasks() {
-    const selected = getRandomThree();
-
-    for (let i = 0; i < masks.length; i++) {
-      masks[i].classList.remove("on");
-    }
-
-    for (const index of selected) {
-      masks[index].classList.add("on");
-    }
-  }
-
-  updateMasks();
-
-  setInterval(updateMasks, 700);
-</script>
+</body>
+</html>
