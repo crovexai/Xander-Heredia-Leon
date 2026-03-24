@@ -27,6 +27,15 @@
     </div>
   </div>
 
+  <header class="hero-banner">
+    <img
+      src="assets/images/background/name-tag.png"
+      alt="Xander Heredia-Leon"
+      class="name-tag"
+      id="nameTag"
+    />
+  </header>
+
   <img
     src="assets/images/background/menu-button.png"
     alt="Open menu"
@@ -42,6 +51,7 @@
     document.addEventListener("DOMContentLoaded", function () {
       const menuButton = document.getElementById("menuButton");
       const mask = document.getElementById("stringLightMask");
+      const nameTag = document.getElementById("nameTag");
 
       if (menuButton) {
         menuButton.addEventListener("click", function () {
@@ -104,6 +114,19 @@
           "drop-shadow(0 0 " + nearGlow.toFixed(2) + "px rgba(255, 244, 214, 0.92)) " +
           "drop-shadow(0 0 " + midGlow.toFixed(2) + "px rgba(255, 210, 120, 0.55)) " +
           "drop-shadow(0 0 " + farGlow.toFixed(2) + "px rgba(255, 170, 70, 0.28))";
+
+        if (nameTag) {
+          const shadowPower = (opacity - 0.54) / 0.40;
+
+          const shadowY = 10 + shadowPower * 16;
+          const shadowBlur = 14 + shadowPower * 22;
+          const shadowAlpha = 0.16 + shadowPower * 0.22;
+
+          nameTag.style.filter =
+            "drop-shadow(0 " + shadowY.toFixed(2) + "px " +
+            shadowBlur.toFixed(2) + "px rgba(0, 0, 0, " +
+            shadowAlpha.toFixed(3) + "))";
+        }
 
         requestAnimationFrame(animate);
       }
