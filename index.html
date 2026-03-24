@@ -17,6 +17,13 @@
         alt=""
         class="string-lights"
       />
+
+      <img
+        src="assets/images/masks/string-light/string-light-mask.png"
+        alt=""
+        class="string-light-mask"
+        id="stringLightMask"
+      />
     </div>
   </div>
 
@@ -34,6 +41,7 @@
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const menuButton = document.getElementById("menuButton");
+      const mask = document.getElementById("stringLightMask");
 
       if (menuButton) {
         menuButton.addEventListener("click", function () {
@@ -47,6 +55,60 @@
           }
         });
       }
+
+      if (!mask) {
+        console.error("String light mask not found.");
+        return;
+      }
+
+      let currentOpacity = 0.72;
+      let targetOpacity = 0.72;
+      let nextTargetAt = 0;
+
+      function randomBetween(min, max) {
+        return min + Math.random() * (max - min);
+      }
+
+      function setNextTarget(now) {
+        targetOpacity = randomBetween(0.58, 0.92);
+        nextTargetAt = now + randomBetween(40, 140);
+      }
+
+      function animate(now) {
+        if (now >= nextTargetAt) {
+          setNextTarget(now);
+        }
+
+        currentOpacity += (targetOpacity - currentOpacity) * 0.16;
+
+        const flickerA = Math.sin(now * 0.018) * 0.035;
+        const flickerB = Math.sin(now * 0.043 + 1.7) * 0.02;
+        const flickerC = Math.sin(now * 0.091 + 0.4) * 0.01;
+
+        let opacity = currentOpacity + flickerA + flickerB + flickerC;
+
+        if (opacity < 0.50) opacity = 0.50;
+        if (opacity > 0.98) opacity = 0.98;
+
+        const glowPower = (opacity - 0.50) / 0.48;
+
+        const whiteGlow = 2 + glowPower * 3;
+        const grayGlow = 5 + glowPower * 7;
+        const darkGrayGlow = 9 + glowPower * 12;
+        const brightness = 1.02 + glowPower * 0.18;
+
+        mask.style.opacity = opacity.toFixed(3);
+        mask.style.filter =
+          "brightness(" + brightness.toFixed(3) + ") " +
+          "drop-shadow(0 0 " + darkGrayGlow.toFixed(2) + "px rgba(255,255,255,0.55)) " +
+          "drop-shadow(0 0 " + grayGlow.toFixed(2) + "px rgba(255,255,255,0.35)) " +
+          "drop-shadow(0 0 " + whiteGlow.toFixed(2) + "px rgba(255,255,255,0.18))";
+
+        requestAnimationFrame(animate);
+      }
+
+      setNextTarget(performance.now());
+      requestAnimationFrame(animate);
     });
   </script>
 
