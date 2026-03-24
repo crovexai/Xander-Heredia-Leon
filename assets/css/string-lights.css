@@ -3,7 +3,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 1;
+  z-index: 2; /* lights below name */
   pointer-events: none;
   user-select: none;
 }
@@ -32,14 +32,13 @@
   will-change: opacity, filter;
 }
 
+/* 🔥 NAME ABOVE LIGHTS */
 .hero-banner {
-  position: relative;
-  z-index: 3;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  width: 100%;
-  padding-top: 95px;
+  position: fixed;
+  top: 10px; /* adjust this */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5; /* ABOVE lights */
   pointer-events: none;
 }
 
@@ -51,6 +50,8 @@
   will-change: filter;
 }
 
+/* push page down so content doesn't hide */
 .home-page {
   min-height: 100vh;
+  padding-top: 180px;
 }
