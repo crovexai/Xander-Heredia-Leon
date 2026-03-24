@@ -70,8 +70,8 @@
       }
 
       function setNextTarget(now) {
-        targetOpacity = randomBetween(0.58, 0.92);
-        nextTargetAt = now + randomBetween(40, 140);
+        targetOpacity = randomBetween(0.60, 0.88);
+        nextTargetAt = now + randomBetween(45, 130);
       }
 
       function animate(now) {
@@ -79,30 +79,31 @@
           setNextTarget(now);
         }
 
-        currentOpacity += (targetOpacity - currentOpacity) * 0.16;
+        currentOpacity += (targetOpacity - currentOpacity) * 0.14;
 
-        const flickerA = Math.sin(now * 0.018) * 0.035;
-        const flickerB = Math.sin(now * 0.043 + 1.7) * 0.02;
-        const flickerC = Math.sin(now * 0.091 + 0.4) * 0.01;
+        const flickerA = Math.sin(now * 0.017) * 0.032;
+        const flickerB = Math.sin(now * 0.041 + 1.4) * 0.019;
+        const flickerC = Math.sin(now * 0.083 + 0.7) * 0.010;
 
         let opacity = currentOpacity + flickerA + flickerB + flickerC;
 
-        if (opacity < 0.50) opacity = 0.50;
-        if (opacity > 0.98) opacity = 0.98;
+        if (opacity < 0.54) opacity = 0.54;
+        if (opacity > 0.94) opacity = 0.94;
 
-        const glowPower = (opacity - 0.50) / 0.48;
+        const glowPower = (opacity - 0.54) / 0.40;
 
-        const whiteGlow = 2 + glowPower * 3;
-        const grayGlow = 5 + glowPower * 7;
-        const darkGrayGlow = 9 + glowPower * 12;
-        const brightness = 1.02 + glowPower * 0.18;
+        const nearGlow = 3 + glowPower * 3.2;
+        const midGlow = 6 + glowPower * 6.5;
+        const farGlow = 11 + glowPower * 10.5;
+        const brightness = 1.02 + glowPower * 0.15;
 
         mask.style.opacity = opacity.toFixed(3);
         mask.style.filter =
           "brightness(" + brightness.toFixed(3) + ") " +
-          "drop-shadow(0 0 " + darkGrayGlow.toFixed(2) + "px rgba(255,255,255,0.55)) " +
-          "drop-shadow(0 0 " + grayGlow.toFixed(2) + "px rgba(255,255,255,0.35)) " +
-          "drop-shadow(0 0 " + whiteGlow.toFixed(2) + "px rgba(255,255,255,0.18))";
+          "saturate(1.10) " +
+          "drop-shadow(0 0 " + nearGlow.toFixed(2) + "px rgba(255, 244, 214, 0.92)) " +
+          "drop-shadow(0 0 " + midGlow.toFixed(2) + "px rgba(255, 210, 120, 0.55)) " +
+          "drop-shadow(0 0 " + farGlow.toFixed(2) + "px rgba(255, 170, 70, 0.28))";
 
         requestAnimationFrame(animate);
       }
