@@ -28,6 +28,29 @@
   object-fit: contain;
   z-index: 2;
   mix-blend-mode: screen;
-  opacity: 0.68;
+  opacity: 0.72;
   will-change: opacity, filter;
+}
+
+.hero-banner {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  padding-top: 95px;
+  pointer-events: none;
+}
+
+.name-tag {
+  display: block;
+  width: min(92vw, 1100px);
+  height: auto;
+  user-select: none;
+  will-change: filter;
+}
+
+.home-page {
+  min-height: 100vh;
 }
