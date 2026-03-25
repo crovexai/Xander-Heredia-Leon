@@ -88,15 +88,15 @@
       }
 
       function setNextTarget(now) {
-        targetOpacity = randomBetween(0.62, 0.98);
+        targetOpacity = randomBetween(0.62, 0.99);
 
-        if (Math.random() > 0.72) {
-          pulseBoost = randomBetween(0.035, 0.085);
+        if (Math.random() > 0.68) {
+          pulseBoost = randomBetween(0.04, 0.10);
         } else {
           pulseBoost = 0;
         }
 
-        nextTargetAt = now + randomBetween(22, 70);
+        nextTargetAt = now + randomBetween(18, 58);
       }
 
       function animate(now) {
@@ -104,13 +104,13 @@
           setNextTarget(now);
         }
 
-        currentOpacity += (targetOpacity - currentOpacity) * 0.22;
+        currentOpacity += (targetOpacity - currentOpacity) * 0.24;
 
-        const flickerA = Math.sin(now * 0.045) * 0.040;
-        const flickerB = Math.sin(now * 0.094 + 1.3) * 0.028;
-        const flickerC = Math.sin(now * 0.163 + 0.8) * 0.016;
-        const flickerD = Math.sin(now * 0.230 + 2.2) * 0.010;
-        const shimmer = (Math.random() - 0.5) * 0.020;
+        const flickerA = Math.sin(now * 0.048) * 0.042;
+        const flickerB = Math.sin(now * 0.101 + 1.3) * 0.030;
+        const flickerC = Math.sin(now * 0.170 + 0.8) * 0.018;
+        const flickerD = Math.sin(now * 0.244 + 2.2) * 0.012;
+        const shimmer = (Math.random() - 0.5) * 0.018;
 
         let opacity =
           currentOpacity +
@@ -129,9 +129,9 @@
         const nearGlow = 4 + warmPower * 5;
         const midGlow = 10 + warmPower * 12;
         const farGlow = 18 + warmPower * 18;
-        const brightness = 1.04 + warmPower * 0.22;
-        const saturation = 1.06 + warmPower * 0.20;
-        const blur = 1.6 + warmPower * 1.2;
+        const brightness = 1.05 + warmPower * 0.24;
+        const saturation = 1.08 + warmPower * 0.20;
+        const blur = 1.6 + warmPower * 1.3;
         const sway = Math.sin(now * 0.003) * (0.25 + warmPower * 0.6);
 
         mask.style.opacity = opacity.toFixed(3);
@@ -141,45 +141,56 @@
           "saturate(" + saturation.toFixed(3) + ") " +
           "blur(" + blur.toFixed(2) + "px) " +
           "drop-shadow(0 0 " + nearGlow.toFixed(2) + "px rgba(255, 248, 224, 0.96)) " +
-          "drop-shadow(0 0 " + midGlow.toFixed(2) + "px rgba(255, 212, 126, 0.60)) " +
-          "drop-shadow(0 0 " + farGlow.toFixed(2) + "px rgba(255, 166, 70, 0.34))";
+          "drop-shadow(0 0 " + midGlow.toFixed(2) + "px rgba(255, 212, 126, 0.64)) " +
+          "drop-shadow(0 0 " + farGlow.toFixed(2) + "px rgba(255, 166, 70, 0.38))";
 
-        const wallGlowA = 0.05 + warmPower * 0.12;
-        const wallGlowB = 0.04 + warmPower * 0.10;
-        const wallGlowC = 0.03 + warmPower * 0.08;
-        const wallScale = 1 + warmPower * 0.018;
-        const wallShiftY = warmPower * 4;
+        const wallGlow1 = 0.06 + warmPower * 0.16;
+        const wallGlow2 = 0.05 + warmPower * 0.14;
+        const wallGlow3 = 0.04 + warmPower * 0.12;
+        const beamGlow = 0.015 + warmPower * 0.055;
+        const wallScale = 1 + warmPower * 0.02;
+        const wallShiftY = 6 + warmPower * 12;
 
         document.body.style.setProperty(
           "--wall-light",
-          "radial-gradient(circle at 18% 6%, rgba(255, 216, 140, " + wallGlowA.toFixed(3) + "), transparent 16%)," +
-          "radial-gradient(circle at 32% 8%, rgba(255, 216, 140, " + wallGlowB.toFixed(3) + "), transparent 18%)," +
-          "radial-gradient(circle at 48% 7%, rgba(255, 216, 140, " + wallGlowA.toFixed(3) + "), transparent 17%)," +
-          "radial-gradient(circle at 64% 8%, rgba(255, 216, 140, " + wallGlowB.toFixed(3) + "), transparent 18%)," +
-          "radial-gradient(circle at 80% 6%, rgba(255, 216, 140, " + wallGlowC.toFixed(3) + "), transparent 16%)"
+          "radial-gradient(ellipse at 12% 15%, rgba(255, 220, 150, " + wallGlow1.toFixed(3) + "), transparent 16%)," +
+          "radial-gradient(ellipse at 24% 18%, rgba(255, 220, 150, " + wallGlow2.toFixed(3) + "), transparent 18%)," +
+          "radial-gradient(ellipse at 36% 16%, rgba(255, 220, 150, " + wallGlow1.toFixed(3) + "), transparent 17%)," +
+          "radial-gradient(ellipse at 50% 20%, rgba(255, 220, 150, " + wallGlow2.toFixed(3) + "), transparent 19%)," +
+          "radial-gradient(ellipse at 64% 17%, rgba(255, 220, 150, " + wallGlow2.toFixed(3) + "), transparent 18%)," +
+          "radial-gradient(ellipse at 78% 15%, rgba(255, 220, 150, " + wallGlow1.toFixed(3) + "), transparent 17%)," +
+          "radial-gradient(ellipse at 90% 18%, rgba(255, 220, 150, " + wallGlow3.toFixed(3) + "), transparent 16%)," +
+          "linear-gradient(to bottom," +
+            "rgba(0,0,0,0.00) 0%," +
+            "rgba(255,210,130," + (beamGlow * 0.65).toFixed(3) + ") 14%," +
+            "rgba(255,200,110," + beamGlow.toFixed(3) + ") 26%," +
+            "rgba(255,175,80," + (beamGlow * 0.72).toFixed(3) + ") 40%," +
+            "rgba(0,0,0,0.00) 62%)"
         );
 
-        const bodyAfter = getComputedStyle(document.body, "::after");
-        if (bodyAfter) {
-          document.body.style.setProperty("--wall-scale", wallScale.toFixed(3));
-          document.body.style.setProperty("--wall-shift-y", wallShiftY.toFixed(2) + "px");
-        }
+        document.documentElement.style.setProperty(
+          "--light-opacity",
+          (0.76 + warmPower * 0.24).toFixed(3)
+        );
 
-        const afterStyle = document.documentElement.style;
-        afterStyle.setProperty("--light-opacity", (0.72 + warmPower * 0.28).toFixed(3));
+        document.body.style.setProperty(
+          "--wall-scale",
+          wallScale.toFixed(3)
+        );
 
-        const wallLayer = document.body;
-        wallLayer.style.setProperty("--flicker-shadow-opacity", (0.16 + warmPower * 0.22).toFixed(3));
+        document.body.style.setProperty(
+          "--wall-shift-y",
+          wallShiftY.toFixed(2) + "px"
+        );
 
         if (nameTag) {
-          const shadowY = 12 + warmPower * 24;
-          const shadowBlur = 18 + warmPower * 34;
+          const shadowY = 14 + warmPower * 22;
+          const shadowBlur = 20 + warmPower * 34;
           const shadowSpread = 2 + warmPower * 10;
-          const shadowAlpha = 0.18 + warmPower * 0.30;
+          const shadowAlpha = 0.20 + warmPower * 0.28;
           const warmBounce = 0.02 + warmPower * 0.08;
-          const tagLift = Math.sin(now * 0.01) * (0.3 + warmPower * 0.5);
 
-          nameTag.style.transform = "translateY(" + tagLift.toFixed(2) + "px)";
+          nameTag.style.transform = "translateY(0px)";
           nameTag.style.filter =
             "drop-shadow(0 " + shadowY.toFixed(2) + "px " +
             shadowBlur.toFixed(2) + "px rgba(0, 0, 0, " +
@@ -215,11 +226,21 @@
         body::after {
           opacity: var(--light-opacity, 0.82);
           background: var(--wall-light,
-            radial-gradient(circle at 18% 6%, rgba(255, 216, 140, 0.10), transparent 16%),
-            radial-gradient(circle at 32% 8%, rgba(255, 216, 140, 0.08), transparent 18%),
-            radial-gradient(circle at 48% 7%, rgba(255, 216, 140, 0.09), transparent 17%),
-            radial-gradient(circle at 64% 8%, rgba(255, 216, 140, 0.08), transparent 18%),
-            radial-gradient(circle at 80% 6%, rgba(255, 216, 140, 0.10), transparent 16%)
+            radial-gradient(ellipse at 12% 15%, rgba(255, 220, 150, 0.10), transparent 16%),
+            radial-gradient(ellipse at 24% 18%, rgba(255, 220, 150, 0.09), transparent 18%),
+            radial-gradient(ellipse at 36% 16%, rgba(255, 220, 150, 0.11), transparent 17%),
+            radial-gradient(ellipse at 50% 20%, rgba(255, 220, 150, 0.10), transparent 19%),
+            radial-gradient(ellipse at 64% 17%, rgba(255, 220, 150, 0.09), transparent 18%),
+            radial-gradient(ellipse at 78% 15%, rgba(255, 220, 150, 0.11), transparent 17%),
+            radial-gradient(ellipse at 90% 18%, rgba(255, 220, 150, 0.10), transparent 16%),
+            linear-gradient(
+              to bottom,
+              rgba(0, 0, 0, 0.00) 0%,
+              rgba(255, 210, 130, 0.025) 16%,
+              rgba(255, 200, 110, 0.04) 28%,
+              rgba(255, 175, 80, 0.025) 42%,
+              rgba(0, 0, 0, 0.00) 62%
+            )
           );
           transform: translateY(var(--wall-shift-y, 0px)) scale(var(--wall-scale, 1));
         }
@@ -239,5 +260,4 @@
   </script>
 
 </body>
-</html>
 </html>
