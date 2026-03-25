@@ -6,23 +6,14 @@
   z-index: 5;
   pointer-events: none;
   user-select: none;
-
-  /* DEBUG: outer wrapper outline */
-  outline: 2px dashed rgba(0, 255, 255, 0.9);
-  outline-offset: -2px;
 }
 
-/* LIGHTS container = cropped visible area */
 .string-lights-stack {
   position: relative;
   width: 100%;
   height: 475px;
   overflow: hidden;
   display: block;
-
-  /* DEBUG: actual crop container outline */
-  outline: 3px solid rgba(255, 0, 0, 0.95);
-  outline-offset: -3px;
 }
 
 .string-lights {
@@ -46,33 +37,22 @@
   will-change: opacity, filter;
 }
 
-/* container UNDER lights */
 .below-lights {
   position: relative;
   width: 100%;
   display: flex;
   justify-content: center;
   margin-top: 0;
-
-  /* DEBUG */
-  outline: 2px dashed rgba(255, 255, 0, 0.9);
-  outline-offset: -2px;
 }
 
-/* NAME */
 .name-tag {
   width: min(92vw, 1100px);
   height: auto;
   user-select: none;
   will-change: filter;
-
-  /* DEBUG */
-  outline: 2px solid rgba(0, 255, 0, 0.9);
-  outline-offset: -2px;
 }
 
-/* page spacing */
 .home-page {
   min-height: 100vh;
-  padding-top: 300px;
+  padding-top: 475px;
 }
