@@ -36,7 +36,7 @@
   opacity: 0.72;
   will-change: opacity, filter;
 
-  filter: brightness(1.5); /* 👈 50% brighter */
+  filter: brightness(1.5) blur(0.5px); /* 👈 50% brighter */
   opacity: 0.9;
 }
 .below-lights {
