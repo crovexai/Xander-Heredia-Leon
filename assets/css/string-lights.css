@@ -1,62 +1,3 @@
-.string-lights-wrap {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 5;
-  pointer-events: none;
-  user-select: none;
-}
-
-.string-lights-stack {
-  position: relative;
-  width: 100%;
-  height: 475px;
-  overflow: hidden;
-  display: block;
-}
-
-.string-lights {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center;
-}
-
-.green-wall-react {
-  position: absolute;
-  inset: 0;
-  z-index: 3;
-  pointer-events: none;
-  mix-blend-mode: soft-light;
-  opacity: 0.14;
-  background: linear-gradient(
-    to bottom,
-    rgba(110, 165, 95, 0.16) 0%,
-    rgba(80, 135, 72, 0.12) 35%,
-    rgba(35, 70, 35, 0.08) 100%
-  );
-}
-
-.string-light-reflection {
-  position: absolute;
-  inset: 0;
-  z-index: 4;
-  pointer-events: none;
-  mix-blend-mode: screen;
-  opacity: 0.16;
-  background:
-    radial-gradient(circle at 12% 14%, rgba(255, 222, 140, 0.12), transparent 7%),
-    radial-gradient(circle at 25% 11%, rgba(255, 220, 130, 0.11), transparent 7%),
-    radial-gradient(circle at 39% 15%, rgba(255, 218, 120, 0.12), transparent 8%),
-    radial-gradient(circle at 52% 12%, rgba(255, 220, 126, 0.11), transparent 7%),
-    radial-gradient(circle at 66% 15%, rgba(255, 219, 120, 0.12), transparent 8%),
-    radial-gradient(circle at 79% 11%, rgba(255, 223, 135, 0.10), transparent 7%),
-    radial-gradient(circle at 91% 14%, rgba(255, 226, 145, 0.11), transparent 7%);
-  filter: blur(14px) saturate(1.1);
-}
-
 .string-light-mask {
   position: absolute;
   inset: 0;
@@ -65,60 +6,19 @@
   object-fit: cover;
   object-position: top center;
   z-index: 6;
-  mix-blend-mode: screen;
-  will-change: opacity, filter;
-  opacity: 0.9;
-  filter: brightness(1.5) sepia(1) saturate(2) hue-rotate(-18deg) blur(0.4px);
-}
-
-.below-lights {
-  position: relative;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  margin-top: 0;
-}
-
-.name-tag-wrap {
-  position: relative;
-  width: min(92vw, 1100px);
-}
-
-.name-tag {
-  position: relative;
-  display: block;
-  width: 100%;
-  height: auto;
-  user-select: none;
-  will-change: filter;
-  z-index: 1;
-}
-
-.name-tag-shadow {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
   pointer-events: none;
-  mix-blend-mode: multiply;
-  opacity: 0.30;
-  filter: blur(8px);
-  transform: translateY(0);
-  will-change: opacity, filter, transform;
-  background:
-    linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0.24) 0%,
-      rgba(0, 0, 0, 0.12) 12%,
-      transparent 30%
-    ),
-    radial-gradient(ellipse at 10% -6%, rgba(0, 0, 0, 0.24) 0%, transparent 35%),
-    radial-gradient(ellipse at 28% -8%, rgba(0, 0, 0, 0.22) 0%, transparent 36%),
-    radial-gradient(ellipse at 48% -6%, rgba(0, 0, 0, 0.24) 0%, transparent 36%),
-    radial-gradient(ellipse at 67% -8%, rgba(0, 0, 0, 0.22) 0%, transparent 36%),
-    radial-gradient(ellipse at 87% -6%, rgba(0, 0, 0, 0.24) 0%, transparent 35%);
-}
+  will-change: opacity, filter;
 
-.home-page {
-  min-height: 100vh;
+  mix-blend-mode: screen;
+  opacity: 0.55;
+
+  filter:
+    brightness(1.8)
+    contrast(1.35)
+    sepia(1)
+    saturate(2)
+    hue-rotate(-18deg)
+    blur(0.4px);
+}
   padding-top: 475px;
 }
