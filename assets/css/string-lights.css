@@ -1,4 +1,4 @@
-string-lights-wrap {
+.string-lights-wrap {
   position: fixed;
   top: 0;
   left: 0;
@@ -12,7 +12,7 @@ string-lights-wrap {
   position: relative;
   width: 100%;
   height: 475px;
-  overflow: hidden;
+  overflow: visible;
   display: block;
 }
 
@@ -22,6 +22,7 @@ string-lights-wrap {
   height: 100%;
   object-fit: cover;
   object-position: top center;
+  filter: brightness(0.95) contrast(1.05);
 }
 
 .string-light-mask {
@@ -33,10 +34,10 @@ string-lights-wrap {
   object-position: top center;
   z-index: 6;
   mix-blend-mode: screen;
-  will-change: opacity, filter;
+  will-change: opacity, filter, transform;
   opacity: 0.9;
-
-  filter: brightness(1.6) sepia(2) saturate(3) hue-rotate(-40deg) blur(2px);
+  transform-origin: top center;
+  filter: brightness(1.7) sepia(1.8) saturate(2.8) hue-rotate(-28deg) blur(2px);
 }
 
 .below-lights {
@@ -44,17 +45,96 @@ string-lights-wrap {
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: 0;
+  align-items: flex-start;
+  margin-top: -12px;
+  padding-inline: 20px;
+  z-index: 7;
+}
+
+.name-tag-shell {
+  position: relative;
+  width: min(96vw, 1300px);
+  min-height: 240px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  will-change: transform, filter;
+}
+
+.name-tag-shell::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 88px;
+  width: min(88%, 1120px);
+  height: 150px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.28), transparent 72%);
+  filter: blur(16px);
+  opacity: 0.6;
+  z-index: 0;
+  will-change: transform, opacity, filter;
 }
 
 .name-tag {
-  width: min(92vw, 1100px);
+  position: relative;
+  z-index: 1;
+  width: min(96vw, 1200px);
+  max-width: 1200px;
   height: auto;
   user-select: none;
-  will-change: filter;
+  will-change: filter, transform;
 }
 
 .home-page {
   min-height: 100vh;
-  padding-top: 475px;
+  padding-top: 525px;
+}
+
+@media (max-width: 900px) {
+  .string-lights-stack {
+    height: 400px;
+  }
+
+  .name-tag-shell {
+    min-height: 210px;
+  }
+
+  .name-tag {
+    width: min(97vw, 1020px);
+  }
+
+  .home-page {
+    padding-top: 450px;
+  }
+}
+
+@media (max-width: 600px) {
+  .string-lights-stack {
+    height: 310px;
+  }
+
+  .below-lights {
+    margin-top: -6px;
+    padding-inline: 10px;
+  }
+
+  .name-tag-shell {
+    min-height: 160px;
+  }
+
+  .name-tag-shell::after {
+    top: 58px;
+    height: 100px;
+    filter: blur(12px);
+  }
+
+  .name-tag {
+    width: min(98vw, 860px);
+  }
+
+  .home-page {
+    padding-top: 355px;
+  }
 }
