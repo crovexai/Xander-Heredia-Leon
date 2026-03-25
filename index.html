@@ -12,9 +12,6 @@
 
   <div class="string-lights-wrap" aria-hidden="true">
     <div class="string-lights-stack">
-      <div class="green-wall-react"></div>
-      <div class="string-light-reflection"></div>
-
       <img
         src="assets/images/background/string-light-base.png"
         alt=""
@@ -30,16 +27,12 @@
     </div>
 
     <div class="below-lights">
-      <div class="name-tag-wrap">
-        <div class="name-tag-shadow" id="nameTagShadow"></div>
-
-        <img
-          src="assets/images/background/name-tag.png"
-          alt="Xander Heredia-Leon"
-          class="name-tag"
-          id="nameTag"
-        />
-      </div>
+      <img
+        src="assets/images/background/name-tag.png"
+        alt="Xander Heredia-Leon"
+        class="name-tag"
+        id="nameTag"
+      />
     </div>
   </div>
 
@@ -58,9 +51,7 @@
     document.addEventListener("DOMContentLoaded", function () {
       const menuButton = document.getElementById("menuButton");
       const mask = document.getElementById("stringLightMask");
-      const nameTagShadow = document.getElementById("nameTagShadow");
-      const reflection = document.querySelector(".string-light-reflection");
-      const greenReact = document.querySelector(".green-wall-react");
+      const nameTag = document.getElementById("nameTag");
 
       if (menuButton) {
         menuButton.addEventListener("click", function () {
@@ -80,132 +71,68 @@
         return;
       }
 
-      const state = {
-        baseBrightness: 1.5,
-        baseSepia: 1.0,
-        baseSaturate: 2.0,
-        baseHue: -18,
-        baseBlur: 0.4,
-        baseOpacity: 0.9
-      };
+      let currentOpacity = 0.72;
+      let targetOpacity = 0.72;
+      let nextTargetAt = 0;
 
       function randomBetween(min, max) {
         return min + Math.random() * (max - min);
       }
 
-      function clamp(value, min, max) {
-        return Math.min(Math.max(value, min), max);
+      function setNextTarget(now) {
+        targetOpacity = randomBetween(0.60, 0.88);
+        nextTargetAt = now + randomBetween(45, 130);
       }
 
-      function applyMaskStyle(brightness, sepia, saturate, hue, blur, opacity) {
+      function animate(now) {
+        if (now >= nextTargetAt) {
+          setNextTarget(now);
+        }
+
+        currentOpacity += (targetOpacity - currentOpacity) * 0.14;
+
+        const flickerA = Math.sin(now * 0.017) * 0.032;
+        const flickerB = Math.sin(now * 0.041 + 1.4) * 0.019;
+        const flickerC = Math.sin(now * 0.083 + 0.7) * 0.010;
+
+        let opacity = currentOpacity + flickerA + flickerB + flickerC;
+
+        if (opacity < 0.54) opacity = 0.54;
+        if (opacity > 0.94) opacity = 0.94;
+
+        const glowPower = (opacity - 0.54) / 0.40;
+
+        const nearGlow = 3 + glowPower * 3.2;
+        const midGlow = 6 + glowPower * 6.5;
+        const farGlow = 11 + glowPower * 10.5;
+        const brightness = 1.02 + glowPower * 0.15;
+
         mask.style.opacity = opacity.toFixed(3);
         mask.style.filter =
           "brightness(" + brightness.toFixed(3) + ") " +
-          "sepia(" + sepia.toFixed(3) + ") " +
-          "saturate(" + saturate.toFixed(3) + ") " +
-          "hue-rotate(" + hue.toFixed(3) + "deg) " +
-          "blur(" + blur.toFixed(3) + "px)";
+          "saturate(1.10) " +
+          "drop-shadow(0 0 " + nearGlow.toFixed(2) + "px rgba(255, 244, 214, 0.92)) " +
+          "drop-shadow(0 0 " + midGlow.toFixed(2) + "px rgba(255, 210, 120, 0.55)) " +
+          "drop-shadow(0 0 " + farGlow.toFixed(2) + "px rgba(255, 170, 70, 0.28))";
+
+        if (nameTag) {
+          const shadowPower = (opacity - 0.54) / 0.40;
+
+          const shadowY = 10 + shadowPower * 16;
+          const shadowBlur = 14 + shadowPower * 22;
+          const shadowAlpha = 0.16 + shadowPower * 0.22;
+
+          nameTag.style.filter =
+            "drop-shadow(0 " + shadowY.toFixed(2) + "px " +
+            shadowBlur.toFixed(2) + "px rgba(0, 0, 0, " +
+            shadowAlpha.toFixed(3) + "))";
+        }
+
+        requestAnimationFrame(animate);
       }
 
-      function tick() {
-        const microFlicker = randomBetween(-0.10, 0.10);
-        const rareDip = Math.random() < 0.12 ? randomBetween(-0.16, -0.06) : 0;
-        const rarePop = Math.random() < 0.08 ? randomBetween(0.03, 0.08) : 0;
-
-        const brightness = clamp(
-          state.baseBrightness + microFlicker + rareDip + rarePop,
-          1.2,
-          1.75
-        );
-
-        const opacity = clamp(
-          state.baseOpacity + microFlicker * 0.65 + rareDip * 0.35,
-          0.72,
-          0.98
-        );
-
-        const sepia = clamp(
-          state.baseSepia + randomBetween(-0.05, 0.08),
-          0.9,
-          1.12
-        );
-
-        const saturate = clamp(
-          state.baseSaturate + randomBetween(-0.15, 0.20),
-          1.75,
-          2.25
-        );
-
-        const hue = clamp(
-          state.baseHue + randomBetween(-2.0, 1.5),
-          -22,
-          -14
-        );
-
-        const blur = clamp(
-          state.baseBlur + (brightness - state.baseBrightness) * 0.35,
-          0.25,
-          0.65
-        );
-
-        applyMaskStyle(brightness, sepia, saturate, hue, blur, opacity);
-
-        if (reflection) {
-          const reflectionOpacity = clamp(opacity * 0.20, 0.12, 0.22);
-          const reflectionBlur = clamp(12 + (brightness - 1.4) * 10, 10, 18);
-
-          reflection.style.opacity = reflectionOpacity.toFixed(3);
-          reflection.style.filter =
-            "blur(" + reflectionBlur.toFixed(2) + "px) saturate(1.1)";
-        }
-
-        if (greenReact) {
-          const reactOpacity = clamp(
-            0.10 + (brightness - 1.3) * 0.08,
-            0.08,
-            0.18
-          );
-          greenReact.style.opacity = reactOpacity.toFixed(3);
-        }
-
-        if (nameTagShadow) {
-          const shadowOpacity = clamp(
-            0.22 + (1.75 - brightness) * 0.18,
-            0.18,
-            0.34
-          );
-
-          const shadowBlur = clamp(
-            8 + (1.75 - brightness) * 8,
-            8,
-            14
-          );
-
-          const shadowOffset = clamp(
-            (1.7 - brightness) * 6,
-            0,
-            4
-          );
-
-          nameTagShadow.style.opacity = shadowOpacity.toFixed(3);
-          nameTagShadow.style.filter = "blur(" + shadowBlur.toFixed(2) + "px)";
-          nameTagShadow.style.transform =
-            "translateY(" + shadowOffset.toFixed(2) + "px)";
-        }
-
-        setTimeout(tick, randomBetween(120, 320));
-      }
-
-      applyMaskStyle(
-        state.baseBrightness,
-        state.baseSepia,
-        state.baseSaturate,
-        state.baseHue,
-        state.baseBlur,
-        state.baseOpacity
-      );
-
-      tick();
+      setNextTarget(performance.now());
+      requestAnimationFrame(animate);
     });
   </script>
 
