@@ -1,11 +1,12 @@
 .string-lights-wrap {
   position: fixed;
-  top: 120px; /* adjust overall placement */
+  top: 0;          /* 👈 move to very top */
   left: 0;
   width: 100%;
   z-index: 5;
   pointer-events: none;
   user-select: none;
+}
 
   /* DEBUG: outer wrapper outline */
   outline: 2px dashed rgba(0, 255, 255, 0.9);
