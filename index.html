@@ -24,16 +24,16 @@
         class="string-light-mask"
         id="stringLightMask"
       />
-    </div>
 
-    <div class="below-lights">
-      <div class="name-tag-shell" id="nameTagShell">
-        <img
-          src="assets/images/background/name-tag.png"
-          alt="Xander Heredia-Leon"
-          class="name-tag"
-          id="nameTag"
-        />
+      <div class="below-lights">
+        <div class="name-tag-shell" id="nameTagShell">
+          <img
+            src="assets/images/background/name-tag.png"
+            alt="Xander Heredia-Leon"
+            class="name-tag"
+            id="nameTag"
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -54,7 +54,6 @@
       const menuButton = document.getElementById("menuButton");
       const mask = document.getElementById("stringLightMask");
       const nameTag = document.getElementById("nameTag");
-      const nameTagShell = document.getElementById("nameTagShell");
 
       if (menuButton) {
         menuButton.addEventListener("click", function () {
@@ -202,20 +201,6 @@
             "px rgba(255, 216, 138, " + warmBounce.toFixed(3) + "))";
         }
 
-        if (nameTagShell) {
-          const shellShadowOpacity = 0.34 + warmPower * 0.26;
-          const shellBlur = 14 + warmPower * 18;
-          const shellScaleX = 1 + warmPower * 0.05;
-          const shellScaleY = 1 + warmPower * 0.16;
-
-          nameTagShell.style.filter =
-            "drop-shadow(0 22px " + shellBlur.toFixed(2) + "px rgba(0, 0, 0, " +
-            shellShadowOpacity.toFixed(3) + "))";
-
-          nameTagShell.style.setProperty("--shell-scale-x", shellScaleX.toFixed(3));
-          nameTagShell.style.setProperty("--shell-scale-y", shellScaleY.toFixed(3));
-        }
-
         pulseBoost *= 0.9;
 
         requestAnimationFrame(animate);
@@ -244,13 +229,6 @@
           );
           transform: translateY(var(--wall-shift-y, 0px)) scale(var(--wall-scale, 1));
         }
-
-        .name-tag-shell::after {
-          transform:
-            translateX(-50%)
-            scaleX(var(--shell-scale-x, 1))
-            scaleY(var(--shell-scale-y, 1));
-        }
       `;
       document.head.appendChild(style);
 
@@ -260,4 +238,5 @@
   </script>
 
 </body>
+</html>
 </html>
