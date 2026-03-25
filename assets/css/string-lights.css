@@ -6,19 +6,31 @@
   z-index: 5;
   pointer-events: none;
   user-select: none;
+
+  /* DEBUG: outer wrapper outline */
+  outline: 2px dashed rgba(0, 255, 255, 0.9);
+  outline-offset: -2px;
 }
 
-/* LIGHTS container = ONLY the image height */
+/* LIGHTS container = cropped visible area */
 .string-lights-stack {
   position: relative;
   width: 100%;
-  display: inline-block;
+  height: 180px;          /* adjust this to crop more or less */
+  overflow: hidden;       /* crops the string lights image */
+  display: block;
+
+  /* DEBUG: actual crop container outline */
+  outline: 3px solid rgba(255, 0, 0, 0.95);
+  outline-offset: -3px;
 }
 
 .string-lights {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;      /* fills container and allows cropping */
+  object-position: top center; /* keeps top of string lights visible */
 }
 
 .string-light-mask {
@@ -26,20 +38,25 @@
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
+  object-position: top center;
   z-index: 6;
   mix-blend-mode: screen;
   opacity: 0.72;
   will-change: opacity, filter;
 }
 
-/* 🔥 NEW: container UNDER lights */
+/* container UNDER lights */
 .below-lights {
   position: relative;
   width: 100%;
   display: flex;
   justify-content: center;
   margin-top: 10px; /* small gap from lights */
+
+  /* DEBUG */
+  outline: 2px dashed rgba(255, 255, 0, 0.9);
+  outline-offset: -2px;
 }
 
 /* NAME */
@@ -48,6 +65,10 @@
   height: auto;
   user-select: none;
   will-change: filter;
+
+  /* DEBUG */
+  outline: 2px solid rgba(0, 255, 0, 0.9);
+  outline-offset: -2px;
 }
 
 /* page spacing */
