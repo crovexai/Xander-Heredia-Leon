@@ -35,8 +35,9 @@
   mix-blend-mode: screen;
   opacity: 0.72;
   will-change: opacity, filter;
-}
 
+  filter: brightness(1.5); /* 👈 50% brighter */
+}
 .below-lights {
   position: relative;
   width: 100%;
