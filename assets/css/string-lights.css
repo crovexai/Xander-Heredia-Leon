@@ -33,12 +33,12 @@
   object-position: top center;
   z-index: 6;
   mix-blend-mode: screen;
-  opacity: 0.72;
   will-change: opacity, filter;
-
-  filter: brightness(1.5) blur(0.5px); /* 👈 50% brighter */
   opacity: 0.9;
+
+  filter: brightness(1.5) sepia(1) saturate(2) hue-rotate(-20deg) blur(0.5px);
 }
+
 .below-lights {
   position: relative;
   width: 100%;
