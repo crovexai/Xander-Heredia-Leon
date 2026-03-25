@@ -1,12 +1,11 @@
 .string-lights-wrap {
   position: fixed;
-  top: 0;          /* 👈 move to very top */
+  top: 0;
   left: 0;
   width: 100%;
   z-index: 5;
   pointer-events: none;
   user-select: none;
-}
 
   /* DEBUG: outer wrapper outline */
   outline: 2px dashed rgba(0, 255, 255, 0.9);
@@ -17,8 +16,8 @@
 .string-lights-stack {
   position: relative;
   width: 100%;
-  height: 400px;          /* adjust this to crop more or less */
-  overflow: hidden;       /* crops the string lights image */
+  height: 400px;
+  overflow: hidden;
   display: block;
 
   /* DEBUG: actual crop container outline */
@@ -30,15 +29,15 @@
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;      /* fills container and allows cropping */
-  object-position: top center; /* keeps top of string lights visible */
+  object-fit: cover;
+  object-position: top center;
 }
 
 .string-light-mask {
   position: absolute;
   inset: 0;
   width: 100%;
-  height: 400%;
+  height: 100%;
   object-fit: cover;
   object-position: top center;
   z-index: 6;
@@ -53,7 +52,7 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: 0px; /* small gap from lights */
+  margin-top: 0;
 
   /* DEBUG */
   outline: 2px dashed rgba(255, 255, 0, 0.9);
