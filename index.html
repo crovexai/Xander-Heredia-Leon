@@ -27,12 +27,14 @@
     </div>
 
     <div class="below-lights">
-      <img
-        src="assets/images/background/name-tag.png"
-        alt="Xander Heredia-Leon"
-        class="name-tag"
-        id="nameTag"
-      />
+      <div class="name-tag-shell" id="nameTagShell">
+        <img
+          src="assets/images/background/name-tag.png"
+          alt="Xander Heredia-Leon"
+          class="name-tag"
+          id="nameTag"
+        />
+      </div>
     </div>
   </div>
 
@@ -52,6 +54,7 @@
       const menuButton = document.getElementById("menuButton");
       const mask = document.getElementById("stringLightMask");
       const nameTag = document.getElementById("nameTag");
+      const nameTagShell = document.getElementById("nameTagShell");
 
       if (menuButton) {
         menuButton.addEventListener("click", function () {
@@ -71,17 +74,29 @@
         return;
       }
 
-      let currentOpacity = 0.72;
-      let targetOpacity = 0.72;
+      let currentOpacity = 0.76;
+      let targetOpacity = 0.76;
       let nextTargetAt = 0;
+      let pulseBoost = 0;
 
       function randomBetween(min, max) {
         return min + Math.random() * (max - min);
       }
 
+      function clamp(value, min, max) {
+        return Math.max(min, Math.min(max, value));
+      }
+
       function setNextTarget(now) {
-        targetOpacity = randomBetween(0.60, 0.88);
-        nextTargetAt = now + randomBetween(45, 130);
+        targetOpacity = randomBetween(0.62, 0.98);
+
+        if (Math.random() > 0.72) {
+          pulseBoost = randomBetween(0.035, 0.085);
+        } else {
+          pulseBoost = 0;
+        }
+
+        nextTargetAt = now + randomBetween(22, 70);
       }
 
       function animate(now) {
@@ -89,47 +104,134 @@
           setNextTarget(now);
         }
 
-        currentOpacity += (targetOpacity - currentOpacity) * 0.14;
+        currentOpacity += (targetOpacity - currentOpacity) * 0.22;
 
-        const flickerA = Math.sin(now * 0.017) * 0.032;
-        const flickerB = Math.sin(now * 0.041 + 1.4) * 0.019;
-        const flickerC = Math.sin(now * 0.083 + 0.7) * 0.010;
+        const flickerA = Math.sin(now * 0.045) * 0.040;
+        const flickerB = Math.sin(now * 0.094 + 1.3) * 0.028;
+        const flickerC = Math.sin(now * 0.163 + 0.8) * 0.016;
+        const flickerD = Math.sin(now * 0.230 + 2.2) * 0.010;
+        const shimmer = (Math.random() - 0.5) * 0.020;
 
-        let opacity = currentOpacity + flickerA + flickerB + flickerC;
+        let opacity =
+          currentOpacity +
+          flickerA +
+          flickerB +
+          flickerC +
+          flickerD +
+          shimmer +
+          pulseBoost;
 
-        if (opacity < 0.54) opacity = 0.54;
-        if (opacity > 0.94) opacity = 0.94;
+        opacity = clamp(opacity, 0.56, 1.0);
 
-        const glowPower = (opacity - 0.54) / 0.40;
+        const glowPower = (opacity - 0.56) / 0.44;
+        const warmPower = clamp(glowPower, 0, 1);
 
-        const nearGlow = 3 + glowPower * 3.2;
-        const midGlow = 6 + glowPower * 6.5;
-        const farGlow = 11 + glowPower * 10.5;
-        const brightness = 1.02 + glowPower * 0.15;
+        const nearGlow = 4 + warmPower * 5;
+        const midGlow = 10 + warmPower * 12;
+        const farGlow = 18 + warmPower * 18;
+        const brightness = 1.04 + warmPower * 0.22;
+        const saturation = 1.06 + warmPower * 0.20;
+        const blur = 1.6 + warmPower * 1.2;
+        const sway = Math.sin(now * 0.003) * (0.25 + warmPower * 0.6);
 
         mask.style.opacity = opacity.toFixed(3);
+        mask.style.transform = "translateX(" + sway.toFixed(2) + "px)";
         mask.style.filter =
           "brightness(" + brightness.toFixed(3) + ") " +
-          "saturate(1.10) " +
-          "drop-shadow(0 0 " + nearGlow.toFixed(2) + "px rgba(255, 244, 214, 0.92)) " +
-          "drop-shadow(0 0 " + midGlow.toFixed(2) + "px rgba(255, 210, 120, 0.55)) " +
-          "drop-shadow(0 0 " + farGlow.toFixed(2) + "px rgba(255, 170, 70, 0.28))";
+          "saturate(" + saturation.toFixed(3) + ") " +
+          "blur(" + blur.toFixed(2) + "px) " +
+          "drop-shadow(0 0 " + nearGlow.toFixed(2) + "px rgba(255, 248, 224, 0.96)) " +
+          "drop-shadow(0 0 " + midGlow.toFixed(2) + "px rgba(255, 212, 126, 0.60)) " +
+          "drop-shadow(0 0 " + farGlow.toFixed(2) + "px rgba(255, 166, 70, 0.34))";
+
+        const wallGlowA = 0.05 + warmPower * 0.12;
+        const wallGlowB = 0.04 + warmPower * 0.10;
+        const wallGlowC = 0.03 + warmPower * 0.08;
+        const wallScale = 1 + warmPower * 0.018;
+        const wallShiftY = warmPower * 4;
+
+        document.body.style.setProperty(
+          "--wall-light",
+          "radial-gradient(circle at 18% 6%, rgba(255, 216, 140, " + wallGlowA.toFixed(3) + "), transparent 16%)," +
+          "radial-gradient(circle at 32% 8%, rgba(255, 216, 140, " + wallGlowB.toFixed(3) + "), transparent 18%)," +
+          "radial-gradient(circle at 48% 7%, rgba(255, 216, 140, " + wallGlowA.toFixed(3) + "), transparent 17%)," +
+          "radial-gradient(circle at 64% 8%, rgba(255, 216, 140, " + wallGlowB.toFixed(3) + "), transparent 18%)," +
+          "radial-gradient(circle at 80% 6%, rgba(255, 216, 140, " + wallGlowC.toFixed(3) + "), transparent 16%)"
+        );
+
+        const bodyAfter = getComputedStyle(document.body, "::after");
+        if (bodyAfter) {
+          document.body.style.setProperty("--wall-scale", wallScale.toFixed(3));
+          document.body.style.setProperty("--wall-shift-y", wallShiftY.toFixed(2) + "px");
+        }
+
+        const afterStyle = document.documentElement.style;
+        afterStyle.setProperty("--light-opacity", (0.72 + warmPower * 0.28).toFixed(3));
+
+        const wallLayer = document.body;
+        wallLayer.style.setProperty("--flicker-shadow-opacity", (0.16 + warmPower * 0.22).toFixed(3));
 
         if (nameTag) {
-          const shadowPower = (opacity - 0.54) / 0.40;
+          const shadowY = 12 + warmPower * 24;
+          const shadowBlur = 18 + warmPower * 34;
+          const shadowSpread = 2 + warmPower * 10;
+          const shadowAlpha = 0.18 + warmPower * 0.30;
+          const warmBounce = 0.02 + warmPower * 0.08;
+          const tagLift = Math.sin(now * 0.01) * (0.3 + warmPower * 0.5);
 
-          const shadowY = 10 + shadowPower * 16;
-          const shadowBlur = 14 + shadowPower * 22;
-          const shadowAlpha = 0.16 + shadowPower * 0.22;
-
+          nameTag.style.transform = "translateY(" + tagLift.toFixed(2) + "px)";
           nameTag.style.filter =
             "drop-shadow(0 " + shadowY.toFixed(2) + "px " +
             shadowBlur.toFixed(2) + "px rgba(0, 0, 0, " +
-            shadowAlpha.toFixed(3) + "))";
+            shadowAlpha.toFixed(3) + ")) " +
+            "drop-shadow(0 " + (shadowY + shadowSpread).toFixed(2) + "px " +
+            (shadowBlur + 8).toFixed(2) + "px rgba(0, 0, 0, " +
+            (shadowAlpha * 0.52).toFixed(3) + ")) " +
+            "drop-shadow(0 0 " + (8 + warmPower * 12).toFixed(2) +
+            "px rgba(255, 216, 138, " + warmBounce.toFixed(3) + "))";
         }
+
+        if (nameTagShell) {
+          const shellShadowOpacity = 0.34 + warmPower * 0.26;
+          const shellBlur = 14 + warmPower * 18;
+          const shellScaleX = 1 + warmPower * 0.05;
+          const shellScaleY = 1 + warmPower * 0.16;
+
+          nameTagShell.style.filter =
+            "drop-shadow(0 22px " + shellBlur.toFixed(2) + "px rgba(0, 0, 0, " +
+            shellShadowOpacity.toFixed(3) + "))";
+
+          nameTagShell.style.setProperty("--shell-scale-x", shellScaleX.toFixed(3));
+          nameTagShell.style.setProperty("--shell-scale-y", shellScaleY.toFixed(3));
+        }
+
+        pulseBoost *= 0.9;
 
         requestAnimationFrame(animate);
       }
+
+      const style = document.createElement("style");
+      style.innerHTML = `
+        body::after {
+          opacity: var(--light-opacity, 0.82);
+          background: var(--wall-light,
+            radial-gradient(circle at 18% 6%, rgba(255, 216, 140, 0.10), transparent 16%),
+            radial-gradient(circle at 32% 8%, rgba(255, 216, 140, 0.08), transparent 18%),
+            radial-gradient(circle at 48% 7%, rgba(255, 216, 140, 0.09), transparent 17%),
+            radial-gradient(circle at 64% 8%, rgba(255, 216, 140, 0.08), transparent 18%),
+            radial-gradient(circle at 80% 6%, rgba(255, 216, 140, 0.10), transparent 16%)
+          );
+          transform: translateY(var(--wall-shift-y, 0px)) scale(var(--wall-scale, 1));
+        }
+
+        .name-tag-shell::after {
+          transform:
+            translateX(-50%)
+            scaleX(var(--shell-scale-x, 1))
+            scaleY(var(--shell-scale-y, 1));
+        }
+      `;
+      document.head.appendChild(style);
 
       setNextTarget(performance.now());
       requestAnimationFrame(animate);
@@ -137,4 +239,5 @@
   </script>
 
 </body>
+</html>
 </html>
