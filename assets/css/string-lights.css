@@ -36,7 +36,7 @@
   will-change: opacity, filter;
   opacity: 0.9;
 
-  filter: brightness(1.5) sepia(1) saturate(2) hue-rotate(-20deg) blur(0.5px);
+  filter: brightness(1.6) sepia(2) saturate(3) hue-rotate(-40deg) blur(2px);
 }
 
 .below-lights {
