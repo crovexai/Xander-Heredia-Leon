@@ -37,7 +37,7 @@
   will-change: opacity, filter, transform;
   opacity: 0.9;
   transform-origin: top center;
-  filter: brightness(1.7) sepia(1.8) saturate(2.8) hue-rotate(-28deg) blur(2px);
+  filter: brightness(1.8) sepia(1.8) saturate(3) hue-rotate(-28deg) blur(2px);
 }
 
 .below-lights {
@@ -84,7 +84,7 @@
   max-width: 1200px;
   height: auto;
   user-select: none;
-  will-change: filter, transform;
+  will-change: filter;
 }
 
 .home-page {
