@@ -40,6 +40,7 @@
   filter: brightness(1.8) sepia(1.8) saturate(3) hue-rotate(-28deg) blur(2px);
 }
 
+/* 🔥 FIXED SPACING */
 .below-lights {
   position: absolute;
   left: 50%;
@@ -49,7 +50,7 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  margin-top: -34px;
+  margin-top: 20px; /* FIXED */
   z-index: 7;
   pointer-events: none;
 }
@@ -57,28 +58,29 @@
 .name-tag-shell {
   position: relative;
   width: 100%;
-  min-height: 0;
   display: flex;
   justify-content: center;
   align-items: flex-start;
 }
 
+/* 🔥 STRONGER SHADOW FOR DEPTH */
 .name-tag-shell::after {
   content: "";
   position: absolute;
   left: 50%;
-  top: 96px;
+  top: 110px;
   width: min(88%, 1120px);
-  height: 140px;
+  height: 160px;
   transform: translateX(-50%);
   border-radius: 50%;
-  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.30), transparent 72%);
-  filter: blur(18px);
-  opacity: 0.72;
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.35), transparent 72%);
+  filter: blur(22px);
+  opacity: 0.9;
   z-index: 0;
   pointer-events: none;
 }
 
+/* 🔥 REDUCED SCALE FOR BETTER HIERARCHY */
 .name-tag {
   position: relative;
   z-index: 1;
@@ -87,13 +89,17 @@
   height: auto;
   display: block;
   user-select: none;
-  will-change: filter;
+  will-change: transform, filter;
+  transform: scale(0.92);
 }
 
+/* 🔥 MORE BREATHING ROOM */
 .home-page {
   min-height: 100vh;
-  padding-top: 640px;
+  padding-top: 720px;
 }
+
+/* ---------------- RESPONSIVE ---------------- */
 
 @media (max-width: 900px) {
   .string-lights-stack {
@@ -102,12 +108,12 @@
 
   .below-lights {
     width: min(97vw, 1020px);
-    margin-top: -28px;
+    margin-top: 16px;
   }
 
   .name-tag-shell::after {
-    top: 82px;
-    height: 120px;
+    top: 90px;
+    height: 130px;
   }
 
   .name-tag {
@@ -115,7 +121,7 @@
   }
 
   .home-page {
-    padding-top: 555px;
+    padding-top: 620px;
   }
 }
 
@@ -126,13 +132,13 @@
 
   .below-lights {
     width: min(98vw, 860px);
-    margin-top: -18px;
+    margin-top: 12px;
   }
 
   .name-tag-shell::after {
-    top: 56px;
-    height: 96px;
-    filter: blur(12px);
+    top: 60px;
+    height: 100px;
+    filter: blur(14px);
   }
 
   .name-tag {
@@ -140,6 +146,6 @@
   }
 
   .home-page {
-    padding-top: 435px;
+    padding-top: 500px;
   }
 }
